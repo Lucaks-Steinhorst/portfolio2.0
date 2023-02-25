@@ -6,6 +6,7 @@ module.exports = {
 			fontFamily: {
 				sans: 'Roboto',
 				poppins: 'Poppins',
+				epilogue: 'Epilogue',
 			},
 		},
 	},

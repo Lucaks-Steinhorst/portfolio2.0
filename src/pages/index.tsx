@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Header from '@/components/Header';
+import SwiperCore from 'swiper';
+import Slider from 'react-slick';
 import {
 	motion,
 	useScroll,
@@ -14,50 +16,80 @@ import { wrap } from '@motionone/utils';
 import { ReactNode, useRef, useState } from 'react';
 import { SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { FaReact } from 'react-icons/fa';
-import { GrNode } from 'react-icons/gr';
+import { GrNode, GrMysql } from 'react-icons/gr';
 import { CgFramer } from 'react-icons/cg';
 import { TbBrandNextjs } from 'react-icons/tb';
 import { RxStitchesLogo } from 'react-icons/rx';
+import Me from '@/components/Me';
+import Workspaces from '@/components/Workspaces';
+import Teste from '@/components/Teste';
+
 interface ParallaxProps {
-	children?: any;
 	baseVelocity: number;
 }
 
 const sliderItems = [
 	{
-		icon: <SiTailwindcss size={35} />,
+		icon: <SiTailwindcss size={30} />,
 		title: 'Tailwind',
 	},
 	{
-		icon: <FaReact size={35} />,
+		icon: <FaReact size={30} />,
 		title: 'React',
 	},
 	{
-		icon: <GrNode size={35} />,
+		icon: <GrNode size={30} />,
 		title: 'Node',
 	},
 	{
-		icon: <CgFramer size={40} />,
+		icon: <CgFramer size={30} />,
 		title: 'Framer',
 	},
 	{
-		icon: <TbBrandNextjs size={35} />,
+		icon: <TbBrandNextjs size={30} />,
 		title: 'Next',
 	},
 	{
-		icon: <SiTypescript size={35} />,
+		icon: <SiTypescript size={30} />,
 		title: 'Typescript',
 	},
 	{
-		icon: <RxStitchesLogo size={35} />,
+		icon: <RxStitchesLogo size={30} />,
 		title: 'Stitches',
+	},
+	{
+		icon: <GrMysql size={30} />,
+		title: 'Mysql',
+	},
+];
+
+const headerItems = [
+	{
+		title: 'Apaixonado em programar sistemas',
+		img: 'https://media.graphassets.com/ueoLb23uRDeGRh0PV3Yw',
+	},
+	{
+		title: 'Amante de filmes de terror',
+		img: 'https://media.graphassets.com/ueoLb23uRDeGRh0PV3Yw',
 	},
 ];
 
 export default function Home() {
 	const ref = useRef(null);
 	const isInView = useInView(ref);
-
+	const settings = {
+		dots: true,
+		fade: true,
+		infinite: true,
+		speed: 800,
+		draggable: false,
+		pauseOnHover: false,
+		swap: false,
+		arrows: false,
+		autoplay: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+	};
 	function ParallaxText({ baseVelocity = 100 }: ParallaxProps) {
 		const baseX = useMotionValue(0);
 		const { scrollY } = useScroll();
@@ -75,7 +107,7 @@ export default function Home() {
 		 * have to replace for wrapping that works for you or dynamically
 		 * calculate
 		 */
-		const x = useTransform(baseX, (v) => `${wrap(-4, -40, v)}%`);
+		const x = useTransform(baseX, (v) => `${wrap(-10, -23, v)}%`);
 
 		const directionFactor = useRef<number>(1);
 		useAnimationFrame((t, delta) => {
@@ -107,8 +139,8 @@ export default function Home() {
 		 * pode ser q funcione -14, -45,
 		 */
 		return (
-			<div className="parallax">
-				<motion.div className="scroller gap-20" style={{ x }}>
+			<div className="parallax ">
+				<motion.div className="scroller flex gap-12" style={{ x }}>
 					{/* <span>
 						{' '}
 						<svg
@@ -1058,7 +1090,7 @@ export default function Home() {
 						return (
 							<div
 								key={index}
-								className="flex items-center justify-center gap-2 text-4xl font-poppins font-semibold normal-case text-white/80 tracking-wide"
+								className="flex items-center w-[139px] h-[28px] justify-start gap-2 text-2xl font-poppins font-semibold normal-case text-white/80 tracking-wide"
 							>
 								{item.icon} {item.title}
 							</div>
@@ -1073,7 +1105,7 @@ export default function Home() {
 		<div className="w-full flex flex-col items-center">
 			<div className="w-full h-screen flex flex-col items-center  bg-black text-white px-5 md:px-0">
 				<Header teste={isInView} />
-				<div
+				{/* <div
 					className="mt-32 lg:mt-40 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl"
 					ref={ref}
 				>
@@ -1091,13 +1123,43 @@ export default function Home() {
 						alt=""
 						className="w-full max-w-[650px] rounded"
 					/>
+				</div> */}
+
+				<div className="w-full max-w-7xl mt-32">
+					<Slider {...settings} className="w-full">
+						{headerItems.map((item) => {
+							return (
+								<div className="w-full " key={item.title}>
+									<div className="mt-32 lg:mt-20 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl">
+										<div className="w-full flex flex-col max-w-xl mb-10 lg:mb-0">
+											<span className="px-4 w-full lg:w-fit py-2 rounded-lg bg-white/10 before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
+												<span className="w-[1px] h-7 bg-white/20 mr-2 ml-1" />
+												Fillipe Augusto - desenvolvedor Front end
+											</span>
+											<h1 className="text-4xl lg:text-6xl font-bold lg:leading-[4.5rem] mt-5">
+												{item.title}
+											</h1>
+										</div>
+										<img
+											src="https://media.graphassets.com/ueoLb23uRDeGRh0PV3Yw"
+											alt=""
+											className="w-full max-w-[650px] rounded"
+										/>
+									</div>
+								</div>
+							);
+						})}
+					</Slider>
 				</div>
 				<div className="w-full max-w-[1100px] mt-20 lg:mt-52">
 					<ParallaxText baseVelocity={-5} />
 				</div>
 			</div>
-			<div className="mt-[20000px]">
-				<h1 className="text-4xl font-bold text-center">Hello World</h1>
+			<div className="w-full bg-white flex justify-center">
+				<Me />
+			</div>
+			<div className="w-full flex items-center justify-center bg-black py-20 md:py-40">
+				<Workspaces />
 			</div>
 		</div>
 	);
