@@ -260,9 +260,12 @@ export default function Header({ teste }: any) {
 				/>
 			</svg>
 
-			<motion.span className="bg-white text-black rounded-md px-4 py-2 cursor-pointer font-semibold">
+			<motion.a
+				href="#me"
+				className="bg-white text-black rounded-md px-4 py-2 cursor-pointer font-semibold"
+			>
 				Sobre mim
-			</motion.span>
+			</motion.a>
 		</motion.div>
 	);
 }

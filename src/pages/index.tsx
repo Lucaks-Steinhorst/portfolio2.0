@@ -1163,7 +1163,7 @@ export default function Home() {
 					<ParallaxText baseVelocity={-5} />
 				</div>
 			</div>
-			<div className="w-full bg-white flex justify-center">
+			<div className="w-full bg-white flex justify-center" id="me">
 				<Me />
 			</div>
 			<div className="w-full flex flex-col items-center justify-center bg-black py-20 md:py-40">
