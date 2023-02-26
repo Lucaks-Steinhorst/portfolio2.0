@@ -8,13 +8,13 @@ export default function Header({ teste }: any) {
 
 	const itemVariants: Variants = {
 		open: {
-			opacity: 1,
+			// opacity: 1,
 			y: 0,
 
-			transition: { type: 'spring', stiffness: 400, damping: 95 },
+			transition: { type: 'spring', stiffness: 700, damping: 95 },
 		},
 		closed: {
-			opacity: 0,
+			// opacity: 0,
 			y: -100,
 			transition: { duration: 0.3 },
 		},

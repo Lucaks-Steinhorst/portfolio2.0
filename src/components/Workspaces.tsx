@@ -41,7 +41,7 @@ export default function Workspaces() {
 					onHoverStart={() => setHover(true)}
 					onHoverEnd={() => setHover(false)}
 				>
-					<span className="text-lg text-slate-100 flex gap-2 items-center">
+					<span className="text-md text-slate-100 flex gap-2 items-center">
 						Interativa digital{' '}
 						<motion.small
 							className="text-xs"
@@ -68,7 +68,7 @@ export default function Workspaces() {
 					onHoverStart={() => setHover(true)}
 					onHoverEnd={() => setHover(false)}
 				>
-					<span className="text-lg text-slate-100 flex gap-2 items-center">
+					<span className="text-md text-slate-100 flex gap-2 items-center">
 						GetHash{' '}
 						<motion.small
 							className="text-xs"
@@ -91,7 +91,7 @@ export default function Workspaces() {
 					</Modal>
 				</motion.div>
 				<motion.div
-					className="max-w-2xl flex flex-col group relative gap-3 p-2"
+					className="max-w-3xl flex flex-col group relative gap-3 p-2"
 					onHoverStart={() => setHover(true)}
 					onHoverEnd={() => setHover(false)}
 				>
@@ -106,26 +106,19 @@ export default function Workspaces() {
 							className="animated-corner-card"
 						/>
 					</svg>
-					<span className="text-lg text-slate-100 flex gap-2 items-center">
-						Lightbase{' '}
-						<motion.small
-							className="text-xs"
-							variants={container}
-							initial="closed"
-							animate={hover ? 'open' : 'closed'}
-						>
-							{' '}
-							- atual
-						</motion.small>
+					<span className="text-md  text-slate-100 flex gap-2 items-center catalog-item-featured-label w-fit absolute left-0 top-0 rounded-tl-lg px-2 rounded-br-md">
+						Lightbase
 					</span>
-					<h1 className="text-2xl font-semibold">Front-end developer ReactJs</h1>
+					<h1 className="text-2xl font-semibold mt-10">
+						Front-end developer ReactJs
+					</h1>
 					<span className="font-epilogue text-white/60">
 						Participation in the development and maintenance of responsive
 						applications with ReactJs
 					</span>
-					<Modal>
+					<ProjectModal>
 						<button className="w-fit z-10">Mais informações</button>
-					</Modal>
+					</ProjectModal>
 				</motion.div>
 			</motion.div>
 		</motion.div>

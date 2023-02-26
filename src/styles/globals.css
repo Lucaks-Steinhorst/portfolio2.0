@@ -89,8 +89,8 @@ body::-webkit-scrollbar {
 }
 
 .catalog-item-featured-label {
-	-webkit-animation: cf-label-color 2s linear infinite;
-	animation: cf-label-color 2s linear infinite;
+	-webkit-animation: cf-label-color 5s linear infinite;
+	animation: cf-label-color 5s linear infinite;
 }
 
 @keyframes cf-label-color {

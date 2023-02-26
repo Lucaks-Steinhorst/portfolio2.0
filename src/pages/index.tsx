@@ -25,6 +25,7 @@ import { RxStitchesLogo } from 'react-icons/rx';
 import Me from '@/components/Me';
 import Workspaces from '@/components/Workspaces';
 import Teste from '@/components/Teste';
+import Courses from '@/components/Courses';
 
 interface ParallaxProps {
 	baseVelocity: number;
@@ -72,7 +73,7 @@ const headerItems = [
 	},
 	{
 		title: 'Amante de filmes de terror',
-		img: 'https://media.graphassets.com/ueoLb23uRDeGRh0PV3Yw',
+		img: 'https://media.graphassets.com/iugfYoeQMOB65QGP88V8',
 	},
 	{
 		title: 'Viciado em séries de suspense',
@@ -1140,19 +1141,22 @@ export default function Home() {
 								<div className="w-full " key={item.title}>
 									<div className="mt-32 lg:mt-20 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl">
 										<div className="w-full flex flex-col max-w-xl mb-10 lg:mb-0">
-											<span className="px-4 w-full lg:w-fit py-2 rounded-lg bg-white/10 before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
-												<span className="w-[1px] h-7 bg-white/20 mr-2 ml-1" />
+											<span className="px-4 w-fit py-2 text-sm md:text-base rounded-lg bg-white/10 before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
+												<span className="w-[1px] h-7 bg-white/20 mr-2 ml-1 " />
 												Fillipe Augusto - desenvolvedor Front end
 											</span>
 											<h1 className="text-4xl lg:text-6xl font-bold lg:leading-[4.5rem] mt-5">
 												{item.title}
 											</h1>
+
+											<a
+												href="#me"
+												className="px-8 py-2 bg-blue-500 w-fit mt-10 text-lg font-epilogue font-semibold"
+											>
+												Sobre mim
+											</a>
 										</div>
-										<img
-											src="https://media.graphassets.com/ueoLb23uRDeGRh0PV3Yw"
-											alt=""
-											className="w-full max-w-[650px] rounded"
-										/>
+										<img src={item.img} alt="" className="w-full max-w-[650px] rounded" />
 									</div>
 								</div>
 							);
@@ -1238,6 +1242,9 @@ export default function Home() {
 						);
 					})}
 				</div>
+			</div>
+			<div className="w-full flex flex-col items-center justify-center bg-white py-20 md:py-40">
+				<Courses />
 			</div>
 		</div>
 	);
