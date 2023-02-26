@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { styled, keyframes } from '@stitches/react';
 import { SiMaterialui, SiReact } from 'react-icons/si';
@@ -6,6 +6,8 @@ import { IoLogoPwa, IoLogoNodejs } from 'react-icons/io5';
 
 interface ModalProps {
 	children: ReactNode;
+	isModalOpen: boolean;
+	onCloseModal: ({}: boolean) => void;
 }
 
 const overlayShow = keyframes({
@@ -14,8 +16,12 @@ const overlayShow = keyframes({
 });
 
 const contentShow = keyframes({
-	'0%': { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
+	'0%': { opacity: 0, transform: 'translate(-50%, 100%) scale(.96)' },
 	'100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+});
+const contentHide = keyframes({
+	'0%': { opacity: 1, transform: 'translate(-50%, -50%) scale(.96)' },
+	'100%': { opacity: 0, transform: 'translate(-50%, 100%) scale(1)' },
 });
 
 const AlertDialogOverlay = styled(AlertDialog.Overlay, {
@@ -33,15 +39,16 @@ const AlertDialogContent = styled(AlertDialog.Content, {
 	boxShadow:
 		'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
 	position: 'fixed',
-	top: '50%',
+	top: '540px',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
 	width: '100%',
 	overflowY: 'scroll',
-	maxWidth: '900px',
-	maxHeight: '85vh',
+	height: '100%',
+	// maxWidth: '900px',
+	maxHeight: 'calc(100% - 80px)',
 	padding: 25,
-	animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
+	// animation: `${contentShow} 1s cubic-bezier(0.16, 1, 0.3, 1)`,
 
 	'&:focus': { outline: 'none' },
 });
@@ -55,14 +62,29 @@ const AlertDialogDescription = styled(AlertDialog.Description, {
 
 const Flex = styled('div', { display: 'flex' });
 
-export default function Modal({ children }: ModalProps) {
+export default function ProjectModal({
+	children,
+	isModalOpen,
+	onCloseModal,
+}: ModalProps) {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>{children}</AlertDialog.Trigger>
 			<AlertDialog.Portal>
 				<AlertDialogOverlay className="bg-black/80 backdrop-blur-md" />
-				<AlertDialogContent id="content">
-					<AlertDialog.Cancel asChild className=" ">
+				<AlertDialogContent
+					id="content"
+					style={{
+						animation: isModalOpen
+							? `${contentShow} 1s cubic-bezier(0.16, 1, 0.3, 1)`
+							: `${contentHide} 1s cubic-bezier(0.16, 1, 0.3, 1)`,
+					}}
+				>
+					<AlertDialog.Cancel
+						asChild
+						className=" "
+						onClick={() => onCloseModal(false)}
+					>
 						<div className=" absolute right-3 top-3 w-10 h-10 rounded-full flex bg-black/10 cursor-pointer items-center justify-center">
 							{/* <svg
 								width="24"
@@ -111,6 +133,7 @@ export default function Modal({ children }: ModalProps) {
 								<h1 className="text-xl font-epilogue font-semibold">
 									Projetos e tecnologias utilizadas na empresa
 								</h1>
+
 								<div>
 									<a
 										href="https://app.bolonobolso.com.br/"

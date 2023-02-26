@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Modal from './Modal';
+import ProjectModal from './ProjectModal';
 export default function Workspaces() {
 	const [hover, setHover] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	console.log(isModalOpen);
 	const container = {
 		open: {
 			opacity: 1,
-			y: 0,
-			transition: { type: 'spring', stiffness: 700, damping: 90 },
+			x: 0,
+			transition: { stiffness: 1000, duration: 0.3 },
 		},
 		closed: {
 			opacity: 0,
-			y: 5,
+			x: -50,
 			transition: { duration: 0.3 },
 		},
 	};
@@ -26,9 +29,10 @@ export default function Workspaces() {
 						Aqui estão alguns lugares que já trabalhei, e alguns projetos que realizei
 						ao longo da minha carreira.
 					</span>
-					<button className="w-fit px-10 py-2 bg-blue-600">
+
+					<a href="#projects" className="w-fit px-10 py-2 bg-blue-600">
 						Veja meus projetos
-					</button>
+					</a>
 				</motion.div>
 			</motion.div>
 			<motion.div className="flex flex-col gap-10 ml-auto">
@@ -59,38 +63,71 @@ export default function Workspaces() {
 						<button className="w-fit">Mais informações</button>
 					</Modal>
 				</motion.div>
-				<motion.div className="max-w-2xl pb-7 flex flex-col border-b-2 border-white/20 gap-3">
+				<motion.div
+					className="max-w-2xl pb-7 flex flex-col border-b-2 border-white/20 gap-3"
+					onHoverStart={() => setHover(true)}
+					onHoverEnd={() => setHover(false)}
+				>
 					<span className="text-lg text-slate-100 flex gap-2 items-center">
-						GetHash <motion.small className="text-xs"> - setembro 2022</motion.small>
+						GetHash{' '}
+						<motion.small
+							className="text-xs"
+							variants={container}
+							initial="closed"
+							animate={hover ? 'open' : 'closed'}
+						>
+							{' '}
+							- setembro 2022
+						</motion.small>
 					</span>
-
 					<h1 className="text-2xl font-semibold">Front-end developer React</h1>
-					<span className="">
+					<span className="font-epilogue text-white/60">
 						Participation in the development and maintenance of responsive
 						applications with Next Js, following the layouts proposed in Figma,
 						applying good code practices.
 					</span>
-					<button className="w-fit">Mais informações</button>
+					<Modal>
+						<button className="w-fit">Mais informações</button>
+					</Modal>
 				</motion.div>
-				<motion.div className="max-w-2xl pb-7 flex flex-col  gap-3">
+				<motion.div
+					className="max-w-2xl flex flex-col group relative gap-3 p-2"
+					onHoverStart={() => setHover(true)}
+					onHoverEnd={() => setHover(false)}
+				>
+					<svg className="absolute left-0 top-0 z-0 h-full w-full">
+						<rect
+							x={1}
+							y={1}
+							fill="none"
+							strokeWidth={2}
+							rx={8}
+							ry={8}
+							className="animated-corner-card"
+						/>
+					</svg>
 					<span className="text-lg text-slate-100 flex gap-2 items-center">
 						Lightbase{' '}
-						<motion.small className="text-xs"> - novembro 2022</motion.small>
+						<motion.small
+							className="text-xs"
+							variants={container}
+							initial="closed"
+							animate={hover ? 'open' : 'closed'}
+						>
+							{' '}
+							- atual
+						</motion.small>
 					</span>
-					<span className="text-lg text-slate-100"></span>
 					<h1 className="text-2xl font-semibold">Front-end developer ReactJs</h1>
-					<span className="">
+					<span className="font-epilogue text-white/60">
 						Participation in the development and maintenance of responsive
 						applications with ReactJs
 					</span>
-					<button className="w-fit">Mais informações</button>
+					<Modal>
+						<button className="w-fit z-10">Mais informações</button>
+					</Modal>
 				</motion.div>
 			</motion.div>
-			{/* <div>
-				<svg className="absolute left-0 top-0 z-0 h-full w-full">
-					<rect x="1" y="1" fill="none" stroke-width="2" rx="8" ry="8"></rect>
-				</svg>
-			</div> */}
 		</motion.div>
 	);
 }

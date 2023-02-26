@@ -32,7 +32,7 @@ export default function Header({ teste }: any) {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
-	console.log('uaiiii', teste);
+
 	return (
 		<motion.div
 			initial={false}

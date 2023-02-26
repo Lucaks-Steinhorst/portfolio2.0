@@ -38,17 +38,34 @@ body {
 	margin-right: 30px;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
 	display: none; /* for Chrome, Safari, and Opera */
 }
 
-.teste {
+.animated-corner {
 	width: calc(100% - 2px);
 	height: calc(100% - 2px);
 	stroke-dasharray: 50%;
 	stroke-dashoffset: 100%;
-	-webkit-animation: cf-border-color 4s linear infinite;
-	animation: cf-border-color 4s linear infinite;
+	-webkit-animation: cf-border-color 5s linear infinite;
+	animation: cf-border-color 5s linear infinite;
+}
+
+.animated-corner-card {
+	width: calc(100% - 2px);
+	height: calc(100% - 2px);
+	stroke-dasharray: 50%;
+	stroke-dashoffset: 100%;
+	-webkit-animation: cf-border-color 5s linear infinite;
+	animation: cf-border-color 5s linear infinite;
+}
+
+.animated-corner-card:hover {
+	opacity: 1;
 }
 
 @keyframes cf-border-color {
@@ -68,5 +85,26 @@ body::-webkit-scrollbar {
 	100% {
 		stroke: var(--color-primary-p3);
 		stroke-dashoffset: 100%;
+	}
+}
+
+.catalog-item-featured-label {
+	-webkit-animation: cf-label-color 2s linear infinite;
+	animation: cf-label-color 2s linear infinite;
+}
+
+@keyframes cf-label-color {
+	0% {
+		background-color: var(--color-primary-p3);
+	}
+	33% {
+		background-color: #de00de;
+	}
+	66% {
+		background-color: #b003fa;
+	}
+
+	100% {
+		background-color: var(--color-primary-p3);
 	}
 }
