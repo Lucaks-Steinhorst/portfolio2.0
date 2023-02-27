@@ -110,7 +110,7 @@ export default function ProjectModal({ children }: ModalProps) {
 						<AlertDialogDescription>
 							<div className="flex flex-col gap-5">
 								<h1 className="text-xl font-epilogue font-semibold">
-									Projetos e tecnologias utilizadas na empresa
+									Projetos e tecnologias utilizadas no meu dia a dia
 								</h1>
 
 								<div>

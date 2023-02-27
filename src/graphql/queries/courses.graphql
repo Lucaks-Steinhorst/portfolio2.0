@@ -1,0 +1,23 @@
+query Courses {
+	courses {
+		id
+		name
+		description
+		school
+		isHighlighted
+		completedIn
+		certificateLink
+	}
+}
+
+query CoursesBR {
+	courses(locales: pt_BR) {
+		id
+		name
+		description
+		school
+		isHighlighted
+		completedIn
+		certificateLink
+	}
+}

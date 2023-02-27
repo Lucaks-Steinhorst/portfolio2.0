@@ -6,6 +6,7 @@ import { IoLogoPwa, IoLogoNodejs } from 'react-icons/io5';
 
 interface ModalProps {
 	children: ReactNode;
+	companyProjects: any;
 }
 
 const overlayShow = keyframes({
@@ -53,33 +54,15 @@ const AlertDialogDescription = styled(AlertDialog.Description, {
 	// lineHeight: 1.5,
 });
 
-const Flex = styled('div', { display: 'flex' });
-
-export default function Modal({ children }: ModalProps) {
+export default function Modal({ children, companyProjects }: ModalProps) {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>{children}</AlertDialog.Trigger>
 			<AlertDialog.Portal>
-				<AlertDialogOverlay className="bg-black/80 backdrop-blur-md" />
+				<AlertDialogOverlay className="bg-black/40 backdrop-blur-md" />
 				<AlertDialogContent id="content">
 					<AlertDialog.Cancel asChild className=" ">
 						<div className=" absolute right-3 top-3 w-10 h-10 rounded-full flex bg-black/10 cursor-pointer items-center justify-center">
-							{/* <svg
-								width="24"
-								height="24"
-								viewBox="0 0 129 129"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M114.202 22.194L98.7915 22.404L74.0815 47.114C71.56 49.6299 68.1435 51.0429 64.5815 51.0429C61.0196 51.0429 57.603 49.6299 55.0815 47.114L30.3715 22.404L14.9615 22.194L45.5815 52.814C50.6232 57.8483 57.4568 60.6758 64.5815 60.6758C71.7063 60.6758 78.5398 57.8483 83.5816 52.814L114.202 22.194Z"
-									fill="black"
-								/>
-								<path
-									d="M14.9615 106.374L30.3715 106.164L55.0815 81.454C57.603 78.9381 61.0196 77.5252 64.5815 77.5252C68.1435 77.5252 71.56 78.9381 74.0815 81.454L98.7915 106.164L114.202 106.374L83.5816 75.754C78.5398 70.7198 71.7063 67.8922 64.5815 67.8922C57.4568 67.8922 50.6232 70.7198 45.5815 75.754L14.9615 106.374Z"
-									fill="black"
-								/>
-							</svg> */}
 							<svg
 								width="20"
 								height="20"
@@ -109,36 +92,37 @@ export default function Modal({ children }: ModalProps) {
 						<AlertDialogDescription>
 							<div className="flex flex-col gap-5">
 								<h1 className="text-xl font-epilogue font-semibold">
-									Projetos e tecnologias utilizadas na empresa
+									Projetos e tecnologias utilizadas no meu dia a dia
 								</h1>
-								<div>
-									<a
-										href="https://app.bolonobolso.com.br/"
-										target="_blank"
-										className="text-lg font-semibold font-epilogue text-blue-600 hover:border-b-2 border-blue-400/30	"
-									>
-										Bolo no bolso
-									</a>{' '}
-									<span className="text-lg">
-										- Um aplicativo cuidadosamente elaborado para profissionais da
-										confeitaria que precisam de todos os seus controles em um só lugar.
-									</span>
-								</div>
-								<div className="flex items-center gap-3">
-									<span>
-										<SiMaterialui size={24} />
-										{/* <span>Material UI</span> */}
-									</span>
-									<span>
-										<SiReact size={24} />
-									</span>
-									<span>
-										<IoLogoPwa size={24} />
-									</span>
-									<span>
-										<IoLogoNodejs size={24} />
-									</span>
-								</div>
+								{companyProjects.map((project: any, index: number) => {
+									return (
+										<div className="flex flex-col gap-5" key={index}>
+											<div>
+												{project.url ? (
+													<a
+														href={project.url}
+														target="_blank"
+														className="text-lg font-semibold font-epilogue text-blue-600 hover:border-b-2 border-blue-400/30"
+													>
+														{project.name}
+													</a>
+												) : (
+													<button className="text-lg font-semibold font-epilogue text-blue-500 hover:text-blue-500/60 transition-all duration-200  cursor-not-allowed">
+														{project.name}
+													</button>
+												)}{' '}
+												<span className="text-lg"> - {project.description}</span>
+											</div>
+											<div className="flex items-center gap-3">
+												{project.techs.map((tech: any, index: number) => {
+													return (
+														<span key={index} dangerouslySetInnerHTML={{ __html: tech }} />
+													);
+												})}
+											</div>
+										</div>
+									);
+								})}
 							</div>
 						</AlertDialogDescription>
 					</div>

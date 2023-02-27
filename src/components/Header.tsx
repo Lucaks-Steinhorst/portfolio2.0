@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, Variants, useInView } from 'framer-motion';
 import { useDetectScroll } from '@smakss/react-scroll-direction';
+import { useLocaleContext } from '@/Context/LocaleContext';
+import Br from './Flags/BR';
+import Usa from './Flags/Usa';
+import NavigationMenuDemo from './LocaleMenu';
 
 export default function Header({ teste }: any) {
 	const [scrollDir] = useDetectScroll({});
 	const [scrollPosition, setScrollPosition] = useState(0);
-
+	const [openMenu, setOpenMenu] = useState(false);
+	const { locale, changeLocale } = useLocaleContext();
 	const itemVariants: Variants = {
 		open: {
 			// opacity: 1,
@@ -260,12 +265,45 @@ export default function Header({ teste }: any) {
 				/>
 			</svg>
 
-			<motion.a
-				href="#me"
-				className="bg-white text-black rounded-md px-4 py-2 cursor-pointer font-semibold"
-			>
-				Sobre mim
-			</motion.a>
+			<div className="flex items-center gap-5">
+				<motion.a
+					href="#me"
+					className="bg-white text-black rounded-md px-4 py-2 cursor-pointer font-semibold"
+				>
+					Sobre mim
+				</motion.a>
+				{/* <button onClick={() => changeLocale()}>
+					{locale === 'pt_BR' ? <Br /> : <Usa />}
+				</button> */}
+				<div
+					className={`w-16 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-all duration-150 ${
+						openMenu && 'bg-white/10'
+					}`}
+				>
+					<button
+						className="w-full items-center flex justify-center"
+						onClick={() => setOpenMenu(!openMenu)}
+					>
+						{locale === 'pt_BR' ? <Br /> : <Usa />}
+					</button>
+					{openMenu && (
+						<div className="z-50 absolute top-16 text-base bg-neutral-900 rounded-lg shadow">
+							<div
+								className="hover:bg-gray-900  transition-all duration-150 rounded-lg"
+								role="none"
+							>
+								<button
+									className=" flex gap-3 items-center p-4 py-1 text-sm text-white bg-black-400"
+									role="menuitem"
+									onClick={() => changeLocale()}
+								>
+									{locale === 'pt_BR' ? <Usa /> : <Br />}
+								</button>
+							</div>
+						</div>
+					)}
+				</div>
+			</div>
 		</motion.div>
 	);
 }

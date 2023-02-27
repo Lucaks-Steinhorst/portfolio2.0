@@ -24,7 +24,7 @@ import { TbBrandNextjs } from 'react-icons/tb';
 import { RxStitchesLogo } from 'react-icons/rx';
 import Me from '@/components/Me';
 import Workspaces from '@/components/Workspaces';
-import Teste from '@/components/Teste';
+
 import Courses from '@/components/Courses';
 
 interface ParallaxProps {

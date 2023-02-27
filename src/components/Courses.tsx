@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Modal from './Modal';
 import { useDetectScroll } from '@smakss/react-scroll-direction';
 import ProjectModal from './ProjectModal';
+import { useCoursesBrQuery, useCoursesQuery } from '@/graphql/generated';
 
 export default function Courses() {
 	const [hover, setHover] = useState(false);
-
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	console.log(isModalOpen);
+	const { data: pt_data } = useCoursesBrQuery();
+	const [user_locale, setUserLocale] = React.useState(false);
+
 	const container = {
 		open: {
 			opacity: 1,
@@ -50,14 +52,14 @@ export default function Courses() {
 	];
 
 	return (
-		<motion.div className="flex flex-col px-10 xl:px-0 md:flex-row w-full max-w-7xl items-start justify-center mt-5  gap-32">
+		<motion.div className="flex flex-col-reverse px-10 xl:px-0 md:flex-row w-full max-w-7xl items-start justify-center mt-5  gap-32">
 			<motion.div className="flex flex-col gap-10 ml-auto">
-				{courses.map((course, index) => {
+				{pt_data?.courses.map((course, index) => {
 					return (
 						<motion.div
-							key={course.title}
+							key={course.id}
 							className={`max-w-2xl pb-7 flex flex-col relative ${
-								index !== courses.length - 1 && 'border-b-2 border-black/20'
+								index !== pt_data.courses.length - 1 && 'border-b-2 border-black/20'
 							}  gap-3`}
 							onHoverStart={() => setHover(true)}
 							onHoverEnd={() => setHover(false)}
@@ -71,7 +73,7 @@ export default function Courses() {
 							)}
 
 							<span className="text-lg text-slate-900 flex gap-2 items-center">
-								{course.schoolName}{' '}
+								{course.school}{' '}
 								<motion.small
 									className="text-xs"
 									variants={container}
@@ -82,11 +84,20 @@ export default function Courses() {
 									- dezembro 2021
 								</motion.small>
 							</span>
-							<h1 className="text-2xl font-semibold">{course.title}</h1>
-							<span className="font-epilogue text-black/60">{course.description}</span>
-							<Modal>
-								<button className="w-fit">Ver certificado</button>
-							</Modal>
+							<h1 className="text-2xl font-semibold">{course.name}</h1>
+							<span className="font-epilogue text-black/60">
+								{course.description} Lorem ipsum dolor sit amet, consectetur adipisicing
+								elit. Fugit at iste nisi odio itaque vitae libero rerum error, animi
+								officia quidem odit eum soluta, maxime, illo velit natus non. Cumque!
+							</span>
+
+							<a
+								href={course.certificateLink ? course.certificateLink : '#'}
+								target="_blank"
+								className="w-fit"
+							>
+								Ver certificado
+							</a>
 						</motion.div>
 					);
 				})}
@@ -97,7 +108,8 @@ export default function Courses() {
 						Meus cursos.
 					</span>
 					<span className="max-w-md text-2xl font-epilogue font-semibold">
-						Aqui estão alguns cursos que já realizei e meus certificados.
+						Aqui estão alguns cursos que já realizei e meus certificados que adiquiri
+						ao longo da minha carreira.
 					</span>
 				</motion.div>
 			</motion.div>

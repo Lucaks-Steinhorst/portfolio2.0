@@ -1,0 +1,16 @@
+query workspaces {
+	workspaces(locales: pt_BR) {
+		company
+		role
+		description {
+			html
+		}
+		activeJob
+		companyProjects(locales: pt_BR) {
+			name
+			url
+			description
+			techs
+		}
+	}
+}

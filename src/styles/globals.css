@@ -64,10 +64,6 @@ body::-webkit-scrollbar {
 	animation: cf-border-color 5s linear infinite;
 }
 
-.animated-corner-card:hover {
-	opacity: 1;
-}
-
 @keyframes cf-border-color {
 	0% {
 		stroke: var(--color-primary-p3);
@@ -107,4 +103,12 @@ body::-webkit-scrollbar {
 	100% {
 		background-color: var(--color-primary-p3);
 	}
+}
+
+code {
+	@apply bg-gray-600 text-white;
+}
+
+li {
+	list-style: none !important;
 }

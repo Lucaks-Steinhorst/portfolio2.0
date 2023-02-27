@@ -1,7 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { useLocaleContext } from '@/Context/LocaleContext';
+import { useMeQuery } from '@/graphql/generated';
 import React from 'react';
 
 export default function Me() {
+	// const { data: en_data } = useMeQuery();
+	const { me } = useLocaleContext();
+
 	return (
 		<div className="flex flex-col-reverse md:flex-row max-w-7xl w-full gap-20 mt-10 md:mt-20">
 			<img
@@ -14,14 +19,10 @@ export default function Me() {
 					Olá, prazer <img src="/smile.svg" alt="" /> me chamo
 				</span>
 				<div className="flex flex-col mt-3 gap-1">
-					<h1 className="text-5xl font-medium font-sans ">Fillipe Augusto</h1>
-					<span className="text-lg font-medium">Desenvolvedor Front end</span>
+					<h1 className="text-5xl font-medium font-sans ">{me?.fullName}</h1>
+					<span className="text-lg font-medium">{me?.role}</span>
 				</div>
-				<span className="max-w-xl">
-					Formado em Engenharia de software, atuo como programador Front end
-					utilizando React e Next js com Typescript, atualmente estou estudando
-					Testes automatizados
-				</span>
+				<span className="max-w-xl">{me?.bio}</span>
 			</div>
 		</div>
 	);

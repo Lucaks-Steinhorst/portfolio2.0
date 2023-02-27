@@ -1,0 +1,14 @@
+query Me {
+	me(where: { id: "clely9kjr4ver0blpvk3280t6" }) {
+		bio
+		role
+		fullName
+		locale
+		localizations {
+			bio
+			role
+			fullName
+			locale
+		}
+	}
+}
