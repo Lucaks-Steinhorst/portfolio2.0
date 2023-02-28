@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Modal from './Modal';
-import ProjectModal from './ProjectModal';
+
 import { useWorkspacesQuery } from '@/graphql/generated';
 export default function Workspaces() {
 	const [hover, setHover] = useState(false);
