@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Modal from './Modal';
 import { useDetectScroll } from '@smakss/react-scroll-direction';
-import ProjectModal from './ProjectModal';
+
 import { useCoursesBrQuery, useCoursesQuery } from '@/graphql/generated';
 
 export default function Courses() {
@@ -102,7 +102,7 @@ export default function Courses() {
 					);
 				})}
 			</motion.div>
-			<motion.div className="flex lg:sticky top-36 md:px-3 w-full lg:w-auto overflow-hidden">
+			<motion.div className="flex lg:sticky top-60 md:px-3 w-full lg:w-auto overflow-hidden">
 				<motion.div className="flex flex-col gap-3">
 					<span className="font-semibold text-lg font-epilogue max-w-[200px]">
 						Meus cursos.
