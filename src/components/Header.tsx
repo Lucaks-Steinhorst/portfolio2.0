@@ -53,7 +53,7 @@ export default function Header({ teste }: any) {
 					? 'open'
 					: 'closed'
 			}
-			className="w-full flex max-w-7xl px-4 py-4 bg-black text-white justify-between fixed z-10"
+			className="w-full flex max-w-7xl px-4 py-4 bg-black text-white justify-between fixed z-40"
 		>
 			{/* <svg
 				width="192"
@@ -295,7 +295,7 @@ export default function Header({ teste }: any) {
 								<button
 									className=" flex gap-3 items-center p-4 py-1 text-sm text-white bg-black-400"
 									role="menuitem"
-									onClick={() => changeLocale()}
+									onClick={() => (changeLocale(), setOpenMenu(false))}
 								>
 									{locale === 'pt_BR' ? <Usa /> : <Br />}
 								</button>

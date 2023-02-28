@@ -38,7 +38,7 @@ const AlertDialogContent = styled(AlertDialog.Content, {
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
 	width: '100%',
-	overflowY: 'scroll',
+	overflowY: 'auto',
 	maxWidth: '900px',
 	maxHeight: '85vh',
 	padding: 25,

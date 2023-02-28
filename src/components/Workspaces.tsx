@@ -80,7 +80,7 @@ export default function Workspaces() {
 								<motion.div
 									ref={ref}
 									key={workspace.company}
-									className={`max-w-3xl flex flex-col group relative  gap-3 p-2`}
+									className={`max-w-3xl flex flex-col group relative  gap-3 p-2 `}
 								>
 									<svg className="absolute left-0 top-0 z-0 h-full w-full">
 										<rect
@@ -96,9 +96,9 @@ export default function Workspaces() {
 									<span className="text-md  text-slate-100 flex gap-2 items-center catalog-item-featured-label w-fit absolute left-0 top-0 rounded-tl-lg px-2 rounded-br-md">
 										{workspace.company}
 									</span>
-									<h1 className="text-2xl font-semibold mt-10">{workspace.role}</h1>
+									<h1 className="text-2xl font-semibold mt-10 z-10">{workspace.role}</h1>
 									<span
-										className="font-epilogue text-white/60"
+										className="font-epilogue text-white/60 z-10"
 										dangerouslySetInnerHTML={{ __html: workspace.description?.html! }}
 									/>
 

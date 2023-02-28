@@ -54,9 +54,7 @@ const AlertDialogDescription = styled(AlertDialog.Description, {
 	// lineHeight: 1.5,
 });
 
-const Flex = styled('div', { display: 'flex' });
-
-export default function ProjectModal({ children }: ModalProps) {
+export function ProjectModal({ children }: ModalProps) {
 	return (
 		<AlertDialog.Root>
 			<AlertDialog.Trigger asChild>{children}</AlertDialog.Trigger>

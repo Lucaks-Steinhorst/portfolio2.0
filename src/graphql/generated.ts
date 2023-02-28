@@ -4575,7 +4575,7 @@ export type PersonalProject = Node & {
   description?: Maybe<Scalars['String']>;
   /** Get the document in other stages */
   documentInStages: Array<PersonalProject>;
-  features?: Maybe<Scalars['String']>;
+  features: Array<ProjectSpecification>;
   /** List of PersonalProject versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -4617,6 +4617,19 @@ export type PersonalProjectDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
+};
+
+
+export type PersonalProjectFeaturesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ProjectSpecificationOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProjectSpecificationWhereInput>;
 };
 
 
@@ -4706,8 +4719,7 @@ export type PersonalProjectCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
-  /** features input for default locale (en) */
-  features?: InputMaybe<Scalars['String']>;
+  features?: InputMaybe<ProjectSpecificationCreateManyInlineInput>;
   images?: InputMaybe<AssetCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<PersonalProjectCreateLocalizationsInput>;
@@ -4721,7 +4733,6 @@ export type PersonalProjectCreateInput = {
 export type PersonalProjectCreateLocalizationDataInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description?: InputMaybe<Scalars['String']>;
-  features?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -4789,6 +4800,9 @@ export type PersonalProjectManyWhereInput = {
   documentInStages_every?: InputMaybe<PersonalProjectWhereStageInput>;
   documentInStages_none?: InputMaybe<PersonalProjectWhereStageInput>;
   documentInStages_some?: InputMaybe<PersonalProjectWhereStageInput>;
+  features_every?: InputMaybe<ProjectSpecificationWhereInput>;
+  features_none?: InputMaybe<ProjectSpecificationWhereInput>;
+  features_some?: InputMaybe<ProjectSpecificationWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -4869,8 +4883,6 @@ export enum PersonalProjectOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
-  FeaturesAsc = 'features_ASC',
-  FeaturesDesc = 'features_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -4886,8 +4898,7 @@ export enum PersonalProjectOrderByInput {
 export type PersonalProjectUpdateInput = {
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
-  /** features input for default locale (en) */
-  features?: InputMaybe<Scalars['String']>;
+  features?: InputMaybe<ProjectSpecificationUpdateManyInlineInput>;
   images?: InputMaybe<AssetUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<PersonalProjectUpdateLocalizationsInput>;
@@ -4899,7 +4910,6 @@ export type PersonalProjectUpdateInput = {
 
 export type PersonalProjectUpdateLocalizationDataInput = {
   description?: InputMaybe<Scalars['String']>;
-  features?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -4938,16 +4948,16 @@ export type PersonalProjectUpdateManyInlineInput = {
 export type PersonalProjectUpdateManyInput = {
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
-  /** features input for default locale (en) */
-  features?: InputMaybe<Scalars['String']>;
   /** Optional updates to localizations */
   localizations?: InputMaybe<PersonalProjectUpdateManyLocalizationsInput>;
+  /** name input for default locale (en) */
+  name?: InputMaybe<Scalars['String']>;
   releaseDate?: InputMaybe<Scalars['Date']>;
 };
 
 export type PersonalProjectUpdateManyLocalizationDataInput = {
   description?: InputMaybe<Scalars['String']>;
-  features?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type PersonalProjectUpdateManyLocalizationInput = {
@@ -5063,25 +5073,9 @@ export type PersonalProjectWhereInput = {
   documentInStages_every?: InputMaybe<PersonalProjectWhereStageInput>;
   documentInStages_none?: InputMaybe<PersonalProjectWhereStageInput>;
   documentInStages_some?: InputMaybe<PersonalProjectWhereStageInput>;
-  features?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  features_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  features_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  features_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** All values that are not equal to given value. */
-  features_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  features_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  features_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  features_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** All values not starting with the given string. */
-  features_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  features_starts_with?: InputMaybe<Scalars['String']>;
+  features_every?: InputMaybe<ProjectSpecificationWhereInput>;
+  features_none?: InputMaybe<ProjectSpecificationWhereInput>;
+  features_some?: InputMaybe<ProjectSpecificationWhereInput>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -5192,6 +5186,415 @@ export type PersonalProjectWhereStageInput = {
 
 /** References PersonalProject record uniquely */
 export type PersonalProjectWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type ProjectSpecification = {
+  __typename?: 'ProjectSpecification';
+  description?: Maybe<Scalars['String']>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<ProjectSpecification>;
+  name?: Maybe<Scalars['String']>;
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type ProjectSpecificationLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+export type ProjectSpecificationConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ProjectSpecificationWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ProjectSpecificationConnection = {
+  __typename?: 'ProjectSpecificationConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ProjectSpecificationEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ProjectSpecificationCreateInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ProjectSpecificationCreateLocalizationsInput>;
+  /** name input for default locale (en) */
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectSpecificationCreateLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectSpecificationCreateLocalizationInput = {
+  /** Localization input */
+  data: ProjectSpecificationCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ProjectSpecificationCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ProjectSpecificationCreateLocalizationInput>>;
+};
+
+export type ProjectSpecificationCreateManyInlineInput = {
+  /** Create and connect multiple existing ProjectSpecification documents */
+  create?: InputMaybe<Array<ProjectSpecificationCreateInput>>;
+};
+
+export type ProjectSpecificationCreateOneInlineInput = {
+  /** Create and connect one ProjectSpecification document */
+  create?: InputMaybe<ProjectSpecificationCreateInput>;
+};
+
+export type ProjectSpecificationCreateWithPositionInput = {
+  /** Document to create */
+  data: ProjectSpecificationCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type ProjectSpecificationEdge = {
+  __typename?: 'ProjectSpecificationEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: ProjectSpecification;
+};
+
+/** Identifies documents */
+export type ProjectSpecificationManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProjectSpecificationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProjectSpecificationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProjectSpecificationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+};
+
+export enum ProjectSpecificationOrderByInput {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC'
+}
+
+export type ProjectSpecificationParent = PersonalProject;
+
+export type ProjectSpecificationParentConnectInput = {
+  PersonalProject?: InputMaybe<PersonalProjectConnectInput>;
+};
+
+export type ProjectSpecificationParentCreateInput = {
+  PersonalProject?: InputMaybe<PersonalProjectCreateInput>;
+};
+
+export type ProjectSpecificationParentCreateManyInlineInput = {
+  /** Connect multiple existing ProjectSpecificationParent documents */
+  connect?: InputMaybe<Array<ProjectSpecificationParentWhereUniqueInput>>;
+  /** Create and connect multiple existing ProjectSpecificationParent documents */
+  create?: InputMaybe<Array<ProjectSpecificationParentCreateInput>>;
+};
+
+export type ProjectSpecificationParentCreateOneInlineInput = {
+  /** Connect one existing ProjectSpecificationParent document */
+  connect?: InputMaybe<ProjectSpecificationParentWhereUniqueInput>;
+  /** Create and connect one ProjectSpecificationParent document */
+  create?: InputMaybe<ProjectSpecificationParentCreateInput>;
+};
+
+export type ProjectSpecificationParentUpdateInput = {
+  PersonalProject?: InputMaybe<PersonalProjectUpdateInput>;
+};
+
+export type ProjectSpecificationParentUpdateManyInlineInput = {
+  /** Connect multiple existing ProjectSpecificationParent documents */
+  connect?: InputMaybe<Array<ProjectSpecificationParentConnectInput>>;
+  /** Create and connect multiple ProjectSpecificationParent documents */
+  create?: InputMaybe<Array<ProjectSpecificationParentCreateInput>>;
+  /** Delete multiple ProjectSpecificationParent documents */
+  delete?: InputMaybe<Array<ProjectSpecificationParentWhereUniqueInput>>;
+  /** Disconnect multiple ProjectSpecificationParent documents */
+  disconnect?: InputMaybe<Array<ProjectSpecificationParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ProjectSpecificationParent documents */
+  set?: InputMaybe<Array<ProjectSpecificationParentWhereUniqueInput>>;
+  /** Update multiple ProjectSpecificationParent documents */
+  update?: InputMaybe<Array<ProjectSpecificationParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ProjectSpecificationParent documents */
+  upsert?: InputMaybe<Array<ProjectSpecificationParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ProjectSpecificationParentUpdateManyWithNestedWhereInput = {
+  PersonalProject?: InputMaybe<PersonalProjectUpdateManyWithNestedWhereInput>;
+};
+
+export type ProjectSpecificationParentUpdateOneInlineInput = {
+  /** Connect existing ProjectSpecificationParent document */
+  connect?: InputMaybe<ProjectSpecificationParentWhereUniqueInput>;
+  /** Create and connect one ProjectSpecificationParent document */
+  create?: InputMaybe<ProjectSpecificationParentCreateInput>;
+  /** Delete currently connected ProjectSpecificationParent document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected ProjectSpecificationParent document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single ProjectSpecificationParent document */
+  update?: InputMaybe<ProjectSpecificationParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ProjectSpecificationParent document */
+  upsert?: InputMaybe<ProjectSpecificationParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ProjectSpecificationParentUpdateWithNestedWhereUniqueInput = {
+  PersonalProject?: InputMaybe<PersonalProjectUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ProjectSpecificationParentUpsertWithNestedWhereUniqueInput = {
+  PersonalProject?: InputMaybe<PersonalProjectUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ProjectSpecificationParentWhereInput = {
+  PersonalProject?: InputMaybe<PersonalProjectWhereInput>;
+};
+
+export type ProjectSpecificationParentWhereUniqueInput = {
+  PersonalProject?: InputMaybe<PersonalProjectWhereUniqueInput>;
+};
+
+export type ProjectSpecificationUpdateInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<ProjectSpecificationUpdateLocalizationsInput>;
+  /** name input for default locale (en) */
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectSpecificationUpdateLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectSpecificationUpdateLocalizationInput = {
+  data: ProjectSpecificationUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ProjectSpecificationUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ProjectSpecificationCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ProjectSpecificationUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ProjectSpecificationUpsertLocalizationInput>>;
+};
+
+export type ProjectSpecificationUpdateManyInlineInput = {
+  /** Create and connect multiple ProjectSpecification component instances */
+  create?: InputMaybe<Array<ProjectSpecificationCreateWithPositionInput>>;
+  /** Delete multiple ProjectSpecification documents */
+  delete?: InputMaybe<Array<ProjectSpecificationWhereUniqueInput>>;
+  /** Update multiple ProjectSpecification component instances */
+  update?: InputMaybe<Array<ProjectSpecificationUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple ProjectSpecification component instances */
+  upsert?: InputMaybe<Array<ProjectSpecificationUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ProjectSpecificationUpdateManyInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ProjectSpecificationUpdateManyLocalizationsInput>;
+  /** name input for default locale (en) */
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectSpecificationUpdateManyLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectSpecificationUpdateManyLocalizationInput = {
+  data: ProjectSpecificationUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ProjectSpecificationUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ProjectSpecificationUpdateManyLocalizationInput>>;
+};
+
+export type ProjectSpecificationUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ProjectSpecificationUpdateManyInput;
+  /** Document search */
+  where: ProjectSpecificationWhereInput;
+};
+
+export type ProjectSpecificationUpdateOneInlineInput = {
+  /** Create and connect one ProjectSpecification document */
+  create?: InputMaybe<ProjectSpecificationCreateInput>;
+  /** Delete currently connected ProjectSpecification document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Update single ProjectSpecification document */
+  update?: InputMaybe<ProjectSpecificationUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ProjectSpecification document */
+  upsert?: InputMaybe<ProjectSpecificationUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ProjectSpecificationUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<ProjectSpecificationUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ProjectSpecificationWhereUniqueInput;
+};
+
+export type ProjectSpecificationUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ProjectSpecificationUpdateInput;
+  /** Unique document search */
+  where: ProjectSpecificationWhereUniqueInput;
+};
+
+export type ProjectSpecificationUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ProjectSpecificationCreateInput;
+  /** Update document if it exists */
+  update: ProjectSpecificationUpdateInput;
+};
+
+export type ProjectSpecificationUpsertLocalizationInput = {
+  create: ProjectSpecificationCreateLocalizationDataInput;
+  locale: Locale;
+  update: ProjectSpecificationUpdateLocalizationDataInput;
+};
+
+export type ProjectSpecificationUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<ProjectSpecificationUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ProjectSpecificationWhereUniqueInput;
+};
+
+export type ProjectSpecificationUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ProjectSpecificationUpsertInput;
+  /** Unique document search */
+  where: ProjectSpecificationWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ProjectSpecificationWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProjectSpecificationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProjectSpecificationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProjectSpecificationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+};
+
+/** References ProjectSpecification record uniquely */
+export type ProjectSpecificationWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
@@ -7798,6 +8201,11 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'Me', bio?: string | null, role?: string | null, fullName?: string | null, locale: Locale, localizations: Array<{ __typename?: 'Me', bio?: string | null, role?: string | null, fullName?: string | null, locale: Locale }> } | null };
 
+export type PersonalProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PersonalProjectsQuery = { __typename?: 'Query', personalProjects: Array<{ __typename?: 'PersonalProject', id: string, name?: string | null, description?: string | null, releaseDate?: any | null, features: Array<{ __typename?: 'ProjectSpecification', name?: string | null, description?: string | null }>, images: Array<{ __typename?: 'Asset', url: string }>, thumbnail?: { __typename?: 'Asset', url: string } | null, localizations: Array<{ __typename?: 'PersonalProject', name?: string | null, description?: string | null, releaseDate?: any | null, features: Array<{ __typename?: 'ProjectSpecification', name?: string | null, description?: string | null }>, images: Array<{ __typename?: 'Asset', url: string }>, thumbnail?: { __typename?: 'Asset', url: string } | null }> }> };
+
 export type WorkspacesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7927,6 +8335,68 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const PersonalProjectsDocument = gql`
+    query PersonalProjects {
+  personalProjects {
+    id
+    name
+    description
+    releaseDate
+    features {
+      name
+      description
+    }
+    images {
+      url
+    }
+    thumbnail {
+      url
+    }
+    localizations {
+      name
+      description
+      releaseDate
+      features {
+        name
+        description
+      }
+      images {
+        url
+      }
+      thumbnail {
+        url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __usePersonalProjectsQuery__
+ *
+ * To run a query within a React component, call `usePersonalProjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePersonalProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePersonalProjectsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePersonalProjectsQuery(baseOptions?: Apollo.QueryHookOptions<PersonalProjectsQuery, PersonalProjectsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PersonalProjectsQuery, PersonalProjectsQueryVariables>(PersonalProjectsDocument, options);
+      }
+export function usePersonalProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PersonalProjectsQuery, PersonalProjectsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PersonalProjectsQuery, PersonalProjectsQueryVariables>(PersonalProjectsDocument, options);
+        }
+export type PersonalProjectsQueryHookResult = ReturnType<typeof usePersonalProjectsQuery>;
+export type PersonalProjectsLazyQueryHookResult = ReturnType<typeof usePersonalProjectsLazyQuery>;
+export type PersonalProjectsQueryResult = Apollo.QueryResult<PersonalProjectsQuery, PersonalProjectsQueryVariables>;
 export const WorkspacesDocument = gql`
     query workspaces {
   workspaces(locales: pt_BR) {

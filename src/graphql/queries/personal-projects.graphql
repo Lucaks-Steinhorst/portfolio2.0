@@ -1,0 +1,33 @@
+query PersonalProjects {
+	personalProjects {
+		id
+		name
+		description
+		releaseDate
+		features {
+			name
+			description
+		}
+		images {
+			url
+		}
+		thumbnail {
+			url
+		}
+		localizations {
+			name
+			description
+			releaseDate
+			features {
+				name
+				description
+			}
+			images {
+				url
+			}
+			thumbnail {
+				url
+			}
+		}
+	}
+}

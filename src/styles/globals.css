@@ -108,7 +108,3 @@ body::-webkit-scrollbar {
 code {
 	@apply bg-gray-600 text-white;
 }
-
-li {
-	list-style: none !important;
-}
