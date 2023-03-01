@@ -1180,14 +1180,14 @@ export default function Home() {
 				<Workspaces />
 			</div>
 			<div
-				className="w-full flex flex-col items-center justify-center gap-32 px-5 md:py-20"
+				className="w-full flex flex-col items-center justify-center gap-32 "
 				id="projects"
 			>
 				<motion.span className="text-5xl text-white font-epilogue font-bold ">
 					Meus <motion.span className="text-blue-500 ">Projetos</motion.span>
 				</motion.span>
 
-				<div className="w-full flex flex-col md:grid md:grid-cols-3 gap-24 max-w-7xl">
+				<div className="w-full flex flex-col md:grid md:grid-cols-3 gap-24 max-w-7xl px-5">
 					{personal_Projects?.map((item: any, index: any) => {
 						return (
 							<ProjectModal key={index}>
@@ -1250,8 +1250,49 @@ export default function Home() {
 						);
 					})}
 				</div>
+
+				<div className="w-full relative z-10">
+					{/* testes */}
+					<svg
+						preserveAspectRatio="none"
+						viewBox="0 0 870 320"
+						fill="none"
+						className="w-full max-w-[1000px] absolute bottom-0 right-0"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M178.507 305.111C131.659 323.63 100.966 315.481 66.2333 315.481C31.501 315.481 31 320 0 320H960V10H863.5C841.291 10 824.689 80.111 811.765 79.185C798.842 78.2591 793.995 63.658 785.918 64.3702C772.187 65.581 760.878 119.778 738.262 138.444C729.132 145.98 720.124 136.093 712.415 144C697.068 159.741 700.299 184.741 691.414 192.148C682.529 199.555 677.683 191.222 665.567 195.852C653.451 200.481 652.643 206.037 642.143 211.592C631.642 217.148 630.027 215.296 616.295 225.481C602.564 235.667 600.141 247.704 588.025 247.704C575.909 247.704 573.486 225.481 560.562 225.481C547.639 225.481 537.946 269.926 487.867 269.926C475.751 269.926 475.751 254.905 465.25 249.555C457.981 245.852 452.327 246.778 441.018 246.778C429.71 246.778 426.479 271.778 413.556 271.778C400.632 271.778 398.209 256.037 389.324 256.037C382.055 256.037 380.439 267.148 364.285 277.333C356.662 282.139 337.63 277.333 319.86 277.333C302.09 277.333 305.32 300.481 291.589 300.481C277.858 300.481 272.204 287.518 261.703 287.518C243.933 287.518 231.817 304.988 218.086 306.037C193.854 307.889 193.51 299.181 178.507 305.111Z"
+							fill="url(#gradient-fill-chart)"
+						/>
+
+						<defs>
+							<linearGradient
+								id="gradient-fill-chart"
+								x1={960}
+								y1={10}
+								x2={960}
+								y2={319}
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop offset={0} stopColor="#FFF" />
+							</linearGradient>
+							<linearGradient
+								id="gradient-line"
+								x1={73}
+								y1={320}
+								x2={900}
+								y2="359.5"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop offset={0} stopColor="#ffffff" />
+							</linearGradient>
+						</defs>
+					</svg>
+					{/* fim testes */}
+				</div>
 			</div>
-			<div className="w-full flex flex-col items-center justify-center bg-white py-20 md:py-40">
+
+			<div className="w-full flex flex-col  items-center justify-center bg-white py-20 md:py-40">
 				<Courses />
 			</div>
 		</div>
