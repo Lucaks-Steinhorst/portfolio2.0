@@ -8,7 +8,6 @@ export default function Workspaces() {
 	const ref = useRef(null);
 	const isInView = useInView(ref);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	console.log(isModalOpen);
 	const container = {
 		open: {
 			opacity: 1,
@@ -41,14 +40,14 @@ export default function Workspaces() {
 					</a>
 				</motion.div>
 			</motion.div>
-			<motion.div className="flex flex-col gap-10 ml-auto">
+			<motion.div className="flex flex-col gap-10 ml-auto ">
 				{data?.workspaces.map((workspace, index) => {
 					return (
 						<>
 							{data.workspaces.length - 1 !== index ? (
 								<motion.div
 									key={workspace.company}
-									className={`max-w-2xl pb-7 flex flex-col  gap-3 border-b-2 border-white/20`}
+									className={`max-w-2xl pb-7 flex flex-col  gap-3 border-b-2 border-white/20 `}
 									onHoverStart={() => setHover(true)}
 									onHoverEnd={() => setHover(false)}
 								>
@@ -80,7 +79,7 @@ export default function Workspaces() {
 								<motion.div
 									ref={ref}
 									key={workspace.company}
-									className={`max-w-3xl flex flex-col group relative  gap-3 p-2 `}
+									className={`max-w-3xl flex flex-col group relative  gap-3 px-2 py-4`}
 								>
 									<svg className="absolute left-0 top-0 z-0 h-full w-full">
 										<rect
@@ -96,7 +95,7 @@ export default function Workspaces() {
 									<span className="text-md  text-slate-100 flex gap-2 items-center catalog-item-featured-label w-fit absolute left-0 top-0 rounded-tl-lg px-2 rounded-br-md">
 										{workspace.company}
 									</span>
-									<h1 className="text-2xl font-semibold mt-10 z-10">{workspace.role}</h1>
+									<h1 className="text-2xl font-semibold mt-7 z-10">{workspace.role}</h1>
 									<span
 										className="font-epilogue text-white/60 z-10"
 										dangerouslySetInnerHTML={{ __html: workspace.description?.html! }}

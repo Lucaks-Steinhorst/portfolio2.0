@@ -27,8 +27,9 @@ import Workspaces from '@/components/Workspaces';
 
 import Courses from '@/components/Courses';
 import { ProjectModal } from '@/components/ProjectModal';
-import { usePersonalProjectsQuery } from '@/graphql/generated';
+
 import { useLocaleContext } from '@/Context/LocaleContext';
+import AnimatedTextCharacter from '@/components/AnimatedTextCharacter';
 
 interface ParallaxProps {
 	baseVelocity: number;
@@ -88,7 +89,7 @@ export default function Home() {
 	const ref = useRef(null);
 	const { personal_Projects } = useLocaleContext();
 	const isInView = useInView(ref);
-	console.log(personal_Projects);
+
 	const settings = {
 		dots: true,
 		fade: true,
@@ -1115,7 +1116,7 @@ export default function Home() {
 
 	return (
 		<div className="w-full flex flex-col items-center">
-			<div className="w-full h-screen flex flex-col items-center  bg-black text-white px-5 md:px-0">
+			<div className="w-full h-screen flex flex-col items-center bg-[url('/teste.svg')] bg-cover bg-no-repeat bg-center text-white px-5 md:px-0">
 				<Header teste={isInView} />
 				{/* <div
 					className="mt-32 lg:mt-40 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl"
@@ -1146,7 +1147,9 @@ export default function Home() {
 										<div className="w-full flex flex-col max-w-xl mb-10 lg:mb-0">
 											<span className="px-4 w-fit py-2 text-sm md:text-base rounded-lg bg-white/10 before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
 												<span className="w-[1px] h-7 bg-white/20 mr-2 ml-1 " />
-												Fillipe Augusto - desenvolvedor Front end
+												<AnimatedTextCharacter
+													text={'Fillipe Augusto - desenvolvedor Front end'}
+												/>
 											</span>
 											<h1 className="text-4xl lg:text-6xl font-bold lg:leading-[4.5rem] mt-5">
 												{item.title}
@@ -1173,7 +1176,7 @@ export default function Home() {
 			<div className="w-full bg-white flex justify-center" id="me">
 				<Me />
 			</div>
-			<div className="w-full flex flex-col items-center justify-center bg-black py-20 md:py-40">
+			<div className="w-full flex   flex-col items-center justify-center bg-black py-20 md:py-40">
 				<Workspaces />
 			</div>
 			<div
