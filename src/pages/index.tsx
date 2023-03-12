@@ -1172,7 +1172,7 @@ export default function Home() {
 
 	return (
 		<div className="w-full flex flex-col items-center">
-			<div className="w-full h-screen flex flex-col items-center bg-[url('/teste.svg')] bg-cover bg-no-repeat bg-center text-white px-5 md:px-0">
+			<div className="w-full h-screen flex flex-col items-center bg-[url('/teste.svg')] bg-cover bg-no-repeat bg-center text-white px-5 md:px-0 relative">
 				<Header teste={isInView} />
 				{/* <div
 					className="mt-32 lg:mt-40 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl"
@@ -1193,7 +1193,7 @@ export default function Home() {
 						className="w-full max-w-[650px] rounded"
 					/>
 				</div> */}
-
+				<div className="w-full  bg-gradient-to-b from-black/40 via-black/90 to-black h-60 absolute bottom-0" />
 				<div className="w-full max-w-7xl mt-32">
 					<Slider {...settings} className="w-full">
 						{headerItems.map((item) => {
