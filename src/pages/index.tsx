@@ -87,8 +87,21 @@ const headerItems = [
 
 export default function Home() {
 	const ref = useRef(null);
+	const ref2 = useRef(null);
 	const { personal_Projects } = useLocaleContext();
 	const isInView = useInView(ref);
+	const isInVie2 = useInView(ref2);
+
+	const icon = {
+		hidden: {
+			pathLength: 0,
+			fill: 'rgba(255, 255, 255, 0)',
+		},
+		visible: {
+			pathLength: 1,
+			fill: 'rgba(255, 255, 255, 1)',
+		},
+	};
 
 	const settings = {
 		dots: true,
@@ -1145,7 +1158,7 @@ export default function Home() {
 								<div className="w-full " key={item.title}>
 									<div className="mt-32 lg:mt-20 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl">
 										<div className="w-full flex flex-col max-w-xl mb-10 lg:mb-0">
-											<span className="px-4 w-fit py-2 text-sm md:text-base rounded-lg bg-white/10 before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
+											<span className="px-4 w-fit py-2 text-sm md:text-base rounded-lg bg-[#1c1c1c] before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
 												<span className="w-[1px] h-7 bg-white/20 mr-2 ml-1 " />
 												<AnimatedTextCharacter
 													text={'Fillipe Augusto - desenvolvedor Front end'}
@@ -1180,7 +1193,7 @@ export default function Home() {
 				<Workspaces />
 			</div>
 			<div
-				className="w-full flex flex-col items-center justify-center gap-32 "
+				className="w-full flex flex-col items-center justify-center gap-32 pb-40 overflow-x-hidden"
 				id="projects"
 			>
 				<motion.span className="text-5xl text-white font-epilogue font-bold ">
@@ -1251,21 +1264,28 @@ export default function Home() {
 					})}
 				</div>
 
-				<div className="w-full relative z-10">
+				<div className="w-full relative z-0" ref={ref2}>
 					{/* testes */}
-					<svg
+					<motion.svg
 						preserveAspectRatio="none"
 						viewBox="0 0 870 320"
 						fill="none"
-						className="w-full max-w-[1000px] absolute bottom-0 right-0"
+						className="w-full max-w-[1000px] absolute -bottom-40 -right-28 z-0"
 						xmlns="http://www.w3.org/2000/svg"
 					>
-						<path
+						<motion.path
+							variants={icon}
+							initial="hidden"
+							animate="visible"
+							transition={{
+								default: { duration: 2, ease: 'easeInOut' },
+								fill: { duration: 2, ease: [1, 0, 0.8, 1] },
+							}}
 							d="M178.507 305.111C131.659 323.63 100.966 315.481 66.2333 315.481C31.501 315.481 31 320 0 320H960V10H863.5C841.291 10 824.689 80.111 811.765 79.185C798.842 78.2591 793.995 63.658 785.918 64.3702C772.187 65.581 760.878 119.778 738.262 138.444C729.132 145.98 720.124 136.093 712.415 144C697.068 159.741 700.299 184.741 691.414 192.148C682.529 199.555 677.683 191.222 665.567 195.852C653.451 200.481 652.643 206.037 642.143 211.592C631.642 217.148 630.027 215.296 616.295 225.481C602.564 235.667 600.141 247.704 588.025 247.704C575.909 247.704 573.486 225.481 560.562 225.481C547.639 225.481 537.946 269.926 487.867 269.926C475.751 269.926 475.751 254.905 465.25 249.555C457.981 245.852 452.327 246.778 441.018 246.778C429.71 246.778 426.479 271.778 413.556 271.778C400.632 271.778 398.209 256.037 389.324 256.037C382.055 256.037 380.439 267.148 364.285 277.333C356.662 282.139 337.63 277.333 319.86 277.333C302.09 277.333 305.32 300.481 291.589 300.481C277.858 300.481 272.204 287.518 261.703 287.518C243.933 287.518 231.817 304.988 218.086 306.037C193.854 307.889 193.51 299.181 178.507 305.111Z"
 							fill="url(#gradient-fill-chart)"
 						/>
 
-						<defs>
+						<motion.defs>
 							<linearGradient
 								id="gradient-fill-chart"
 								x1={960}
@@ -1286,8 +1306,9 @@ export default function Home() {
 							>
 								<stop offset={0} stopColor="#ffffff" />
 							</linearGradient>
-						</defs>
-					</svg>
+						</motion.defs>
+					</motion.svg>
+
 					{/* fim testes */}
 				</div>
 			</div>
