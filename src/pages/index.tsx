@@ -52,22 +52,65 @@ const sliderItems = [
 		icon: <CgFramer size={30} />,
 		title: 'Framer',
 	},
+
 	{
 		icon: <TbBrandNextjs size={30} />,
 		title: 'Next',
 	},
 	{
-		icon: <SiTypescript size={30} />,
-		title: 'Typescript',
+		icon: <SiTailwindcss size={30} />,
+		title: 'Tailwind',
 	},
 	{
-		icon: <RxStitchesLogo size={30} />,
-		title: 'Stitches',
+		icon: <FaReact size={30} />,
+		title: 'React',
 	},
 	{
-		icon: <GrMysql size={30} />,
-		title: 'Mysql',
+		icon: <GrNode size={30} />,
+		title: 'Node',
 	},
+	{
+		icon: <CgFramer size={30} />,
+		title: 'Framer',
+	},
+
+	{
+		icon: <TbBrandNextjs size={30} />,
+		title: 'Next',
+	},
+	{
+		icon: <SiTailwindcss size={30} />,
+		title: 'Tailwind',
+	},
+	{
+		icon: <FaReact size={30} />,
+		title: 'React',
+	},
+	{
+		icon: <GrNode size={30} />,
+		title: 'Node',
+	},
+	{
+		icon: <CgFramer size={30} />,
+		title: 'Framer',
+	},
+
+	{
+		icon: <TbBrandNextjs size={30} />,
+		title: 'Next',
+	},
+	// {
+	// 	icon: <SiTypescript size={30} />,
+	// 	title: 'Typescript',
+	// },
+	// {
+	// 	icon: <RxStitchesLogo size={30} />,
+	// 	title: 'Stitches',
+	// },
+	// {
+	// 	icon: <GrMysql size={30} />,
+	// 	title: 'Mysql',
+	// },
 ];
 
 const headerItems = [
@@ -133,7 +176,7 @@ export default function Home() {
 		 * have to replace for wrapping that works for you or dynamically
 		 * calculate
 		 */
-		const x = useTransform(baseX, (v) => `${wrap(-10, -23, v)}%`);
+		const x = useTransform(baseX, (v) => `${wrap(-1, -35, v)}%`);
 
 		const directionFactor = useRef<number>(1);
 		useAnimationFrame((t, delta) => {
@@ -165,7 +208,7 @@ export default function Home() {
 		 * pode ser q funcione -14, -45,
 		 */
 		return (
-			<div className="parallax ">
+			<div className="parallax">
 				<motion.div className="scroller flex gap-12" style={{ x }}>
 					{/* <span>
 						{' '}
@@ -1182,7 +1225,7 @@ export default function Home() {
 						})}
 					</Slider>
 				</div>
-				<div className="w-full max-w-[1100px] mt-20 lg:mt-52">
+				<div className="w-full max-w-[800px] mt-20 lg:mt-52">
 					<ParallaxText baseVelocity={-5} />
 				</div>
 			</div>
@@ -1270,41 +1313,17 @@ export default function Home() {
 						preserveAspectRatio="none"
 						viewBox="0 0 870 320"
 						fill="none"
-						className="w-full max-w-[1000px] absolute -bottom-40 -right-28 z-0"
+						className="w-full max-w-[1000px] absolute -bottom-[165px] -right-32 z-10"
 						xmlns="http://www.w3.org/2000/svg"
 					>
 						<motion.path
-							variants={icon}
-							initial="hidden"
-							animate="visible"
-							transition={{
-								default: { duration: 2, ease: 'easeInOut' },
-								fill: { duration: 2, ease: [1, 0, 0.8, 1] },
-							}}
 							d="M178.507 305.111C131.659 323.63 100.966 315.481 66.2333 315.481C31.501 315.481 31 320 0 320H960V10H863.5C841.291 10 824.689 80.111 811.765 79.185C798.842 78.2591 793.995 63.658 785.918 64.3702C772.187 65.581 760.878 119.778 738.262 138.444C729.132 145.98 720.124 136.093 712.415 144C697.068 159.741 700.299 184.741 691.414 192.148C682.529 199.555 677.683 191.222 665.567 195.852C653.451 200.481 652.643 206.037 642.143 211.592C631.642 217.148 630.027 215.296 616.295 225.481C602.564 235.667 600.141 247.704 588.025 247.704C575.909 247.704 573.486 225.481 560.562 225.481C547.639 225.481 537.946 269.926 487.867 269.926C475.751 269.926 475.751 254.905 465.25 249.555C457.981 245.852 452.327 246.778 441.018 246.778C429.71 246.778 426.479 271.778 413.556 271.778C400.632 271.778 398.209 256.037 389.324 256.037C382.055 256.037 380.439 267.148 364.285 277.333C356.662 282.139 337.63 277.333 319.86 277.333C302.09 277.333 305.32 300.481 291.589 300.481C277.858 300.481 272.204 287.518 261.703 287.518C243.933 287.518 231.817 304.988 218.086 306.037C193.854 307.889 193.51 299.181 178.507 305.111Z"
-							fill="url(#gradient-fill-chart)"
+							fill="none"
 						/>
 
 						<motion.defs>
-							<linearGradient
-								id="gradient-fill-chart"
-								x1={960}
-								y1={10}
-								x2={960}
-								y2={319}
-								gradientUnits="userSpaceOnUse"
-							>
+							<linearGradient id="gradient-fill-chart" gradientUnits="userSpaceOnUse">
 								<stop offset={0} stopColor="#FFF" />
-							</linearGradient>
-							<linearGradient
-								id="gradient-line"
-								x1={73}
-								y1={320}
-								x2={900}
-								y2="359.5"
-								gradientUnits="userSpaceOnUse"
-							>
-								<stop offset={0} stopColor="#ffffff" />
 							</linearGradient>
 						</motion.defs>
 					</motion.svg>
