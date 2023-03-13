@@ -30,6 +30,7 @@ import { ProjectModal } from '@/components/ProjectModal';
 
 import { useLocaleContext } from '@/Context/LocaleContext';
 import AnimatedTextCharacter from '@/components/AnimatedTextCharacter';
+import { IoLogoDocker } from 'react-icons/io5';
 
 interface ParallaxProps {
 	baseVelocity: number;
@@ -101,6 +102,96 @@ const sliderItems = [
 	},
 ];
 
+const sliderItems2 = [
+	{
+		icon: <SiTailwindcss size={30} />,
+		title: 'Tailwind',
+	},
+	{
+		icon: <FaReact size={30} />,
+		title: 'React',
+	},
+	{
+		icon: <GrNode size={30} />,
+		title: 'Node',
+	},
+	{
+		icon: <CgFramer size={30} />,
+		title: 'Framer',
+	},
+
+	{
+		icon: <TbBrandNextjs size={30} />,
+		title: 'Next',
+	},
+	{
+		icon: <GrMysql size={30} />,
+		title: 'MySQL',
+	},
+	{
+		icon: <IoLogoDocker size={30} />,
+		title: 'Docker',
+	},
+	{
+		icon: <SiTailwindcss size={30} />,
+		title: 'Tailwind',
+	},
+	{
+		icon: <FaReact size={30} />,
+		title: 'React',
+	},
+	{
+		icon: <GrNode size={30} />,
+		title: 'Node',
+	},
+	{
+		icon: <CgFramer size={30} />,
+		title: 'Framer',
+	},
+
+	{
+		icon: <TbBrandNextjs size={30} />,
+		title: 'Next',
+	},
+	{
+		icon: <GrMysql size={30} />,
+		title: 'MySQL',
+	},
+	{
+		icon: <IoLogoDocker size={30} />,
+		title: 'Docker',
+	},
+	{
+		icon: <SiTailwindcss size={30} />,
+		title: 'Tailwind',
+	},
+	{
+		icon: <FaReact size={30} />,
+		title: 'React',
+	},
+	{
+		icon: <GrNode size={30} />,
+		title: 'Node',
+	},
+	{
+		icon: <CgFramer size={30} />,
+		title: 'Framer',
+	},
+
+	{
+		icon: <TbBrandNextjs size={30} />,
+		title: 'Next',
+	},
+	{
+		icon: <GrMysql size={30} />,
+		title: 'MySQL',
+	},
+	{
+		icon: <IoLogoDocker size={30} />,
+		title: 'Docker',
+	},
+];
+
 const headerItems = [
 	{
 		title: 'Apaixonado em programar sistemas',
@@ -118,21 +209,8 @@ const headerItems = [
 
 export default function Home() {
 	const ref = useRef(null);
-	const ref2 = useRef(null);
 	const { personal_Projects } = useLocaleContext();
 	const isInView = useInView(ref);
-	const isInVie2 = useInView(ref2);
-
-	const icon = {
-		hidden: {
-			pathLength: 0,
-			fill: 'rgba(255, 255, 255, 0)',
-		},
-		visible: {
-			pathLength: 1,
-			fill: 'rgba(255, 255, 255, 1)',
-		},
-	};
 
 	const settings = {
 		dots: true,
@@ -198,7 +276,7 @@ export default function Home() {
 		return (
 			<div className="parallax">
 				<motion.div className="scroller flex gap-12" style={{ x }}>
-					{sliderItems.map((item, index) => {
+					{sliderItems2.map((item, index) => {
 						return (
 							<div
 								key={index}
@@ -221,27 +299,9 @@ export default function Home() {
 		<div className="w-full flex flex-col items-center">
 			<div className="w-full h-screen flex flex-col items-center bg-[url('/grid.svg')] bg-cover bg-no-repeat bg-center text-white px-5 md:px-0 relative">
 				<Header teste={isInView} />
-				{/* <div
-					className="mt-32 lg:mt-40 flex flex-col lg:flex-row items-center lg:items-start justify-center md:justify-between w-full max-w-7xl"
-					ref={ref}
-				>
-					<div className="w-full flex flex-col max-w-xl mb-10 lg:mb-0">
-						<span className="px-4 w-full lg:w-fit py-2 rounded-lg bg-white/10 before:content-[url('/bolt-small.svg')]  before:text-white/30 before:mt-1 flex gap-2 items-center">
-							<span className="w-[1px] h-7 bg-white/20 mr-2 ml-1" />
-							Fillipe Augusto - desenvolvedor Front end
-						</span>
-						<h1 className="text-4xl lg:text-6xl font-bold lg:leading-[4.5rem] mt-5">
-							Apaixonado em games de primeira pessoa
-						</h1>
-					</div>
-					<img
-						src="https://media.graphassets.com/ueoLb23uRDeGRh0PV3Yw"
-						alt=""
-						className="w-full max-w-[650px] rounded"
-					/>
-				</div> */}
+
 				<div className="w-full  bg-gradient-to-b from-black/40 via-black/90 to-black h-60 absolute bottom-0" />
-				<div className="w-full max-w-7xl mt-3 md:mt-32">
+				<div className="w-full px-2 md:px-5 xl:px-0 max-w-7xl mt-3 xl:mt-32">
 					<Slider {...settings} className="w-full">
 						{headerItems.map((item) => {
 							return (
@@ -276,8 +336,10 @@ export default function Home() {
 						})}
 					</Slider>
 				</div>
-				<div className="w-full max-w-[800px] mt-20 lg:mt-52">
-					<ParallaxText baseVelocity={-5} />
+				<div className="w-full md:max-w-[950px] mt-20 lg:mt-52 relative">
+					<div className="absolute bg-gradient-to-r from-black to-transparent via-black/40 z-10 h-full w-32 left-0 top-0" />
+					<ParallaxText baseVelocity={-3} />
+					<div className="absolute bg-gradient-to-l from-black to-transparent via-black/40 z-10 h-full w-32 right-0 top-0" />
 				</div>
 			</div>
 			<div className="w-full bg-white flex justify-center" id="me">
