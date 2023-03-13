@@ -4572,10 +4572,12 @@ export type PersonalProject = Node & {
   createdAt: Scalars['DateTime'];
   /** User that created this document */
   createdBy?: Maybe<User>;
+  demoUrl?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   /** Get the document in other stages */
   documentInStages: Array<PersonalProject>;
   features: Array<ProjectSpecification>;
+  github?: Maybe<Scalars['String']>;
   /** List of PersonalProject versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -4717,9 +4719,11 @@ export type PersonalProjectConnection = {
 
 export type PersonalProjectCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  demoUrl?: InputMaybe<Scalars['String']>;
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
   features?: InputMaybe<ProjectSpecificationCreateManyInlineInput>;
+  github?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<AssetCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<PersonalProjectCreateLocalizationsInput>;
@@ -4797,12 +4801,50 @@ export type PersonalProjectManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  demoUrl?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  demoUrl_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  demoUrl_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  demoUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  demoUrl_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  demoUrl_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  demoUrl_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  demoUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  demoUrl_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  demoUrl_starts_with?: InputMaybe<Scalars['String']>;
   documentInStages_every?: InputMaybe<PersonalProjectWhereStageInput>;
   documentInStages_none?: InputMaybe<PersonalProjectWhereStageInput>;
   documentInStages_some?: InputMaybe<PersonalProjectWhereStageInput>;
   features_every?: InputMaybe<ProjectSpecificationWhereInput>;
   features_none?: InputMaybe<ProjectSpecificationWhereInput>;
   features_some?: InputMaybe<ProjectSpecificationWhereInput>;
+  github?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  github_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  github_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  github_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  github_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  github_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  github_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  github_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  github_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  github_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -4881,8 +4923,12 @@ export type PersonalProjectManyWhereInput = {
 export enum PersonalProjectOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  DemoUrlAsc = 'demoUrl_ASC',
+  DemoUrlDesc = 'demoUrl_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
+  GithubAsc = 'github_ASC',
+  GithubDesc = 'github_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -4896,9 +4942,11 @@ export enum PersonalProjectOrderByInput {
 }
 
 export type PersonalProjectUpdateInput = {
+  demoUrl?: InputMaybe<Scalars['String']>;
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
   features?: InputMaybe<ProjectSpecificationUpdateManyInlineInput>;
+  github?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<AssetUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<PersonalProjectUpdateLocalizationsInput>;
@@ -4946,8 +4994,10 @@ export type PersonalProjectUpdateManyInlineInput = {
 };
 
 export type PersonalProjectUpdateManyInput = {
+  demoUrl?: InputMaybe<Scalars['String']>;
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
+  github?: InputMaybe<Scalars['String']>;
   /** Optional updates to localizations */
   localizations?: InputMaybe<PersonalProjectUpdateManyLocalizationsInput>;
   /** name input for default locale (en) */
@@ -5051,6 +5101,25 @@ export type PersonalProjectWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  demoUrl?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  demoUrl_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  demoUrl_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  demoUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  demoUrl_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  demoUrl_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  demoUrl_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  demoUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  demoUrl_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  demoUrl_starts_with?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   description_contains?: InputMaybe<Scalars['String']>;
@@ -5076,6 +5145,25 @@ export type PersonalProjectWhereInput = {
   features_every?: InputMaybe<ProjectSpecificationWhereInput>;
   features_none?: InputMaybe<ProjectSpecificationWhereInput>;
   features_some?: InputMaybe<ProjectSpecificationWhereInput>;
+  github?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  github_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  github_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  github_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  github_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  github_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  github_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  github_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  github_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  github_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -8204,7 +8292,7 @@ export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'Me', bio?: st
 export type PersonalProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PersonalProjectsQuery = { __typename?: 'Query', personalProjects: Array<{ __typename?: 'PersonalProject', id: string, name?: string | null, description?: string | null, releaseDate?: any | null, features: Array<{ __typename?: 'ProjectSpecification', name?: string | null, description?: string | null }>, images: Array<{ __typename?: 'Asset', url: string }>, thumbnail?: { __typename?: 'Asset', url: string } | null, localizations: Array<{ __typename?: 'PersonalProject', name?: string | null, description?: string | null, releaseDate?: any | null, features: Array<{ __typename?: 'ProjectSpecification', name?: string | null, description?: string | null }>, images: Array<{ __typename?: 'Asset', url: string }>, thumbnail?: { __typename?: 'Asset', url: string } | null }> }> };
+export type PersonalProjectsQuery = { __typename?: 'Query', personalProjects: Array<{ __typename?: 'PersonalProject', id: string, name?: string | null, description?: string | null, releaseDate?: any | null, github?: string | null, demoUrl?: string | null, features: Array<{ __typename?: 'ProjectSpecification', name?: string | null, description?: string | null }>, images: Array<{ __typename?: 'Asset', url: string }>, thumbnail?: { __typename?: 'Asset', url: string } | null, localizations: Array<{ __typename?: 'PersonalProject', name?: string | null, description?: string | null, releaseDate?: any | null, features: Array<{ __typename?: 'ProjectSpecification', name?: string | null, description?: string | null }>, images: Array<{ __typename?: 'Asset', url: string }>, thumbnail?: { __typename?: 'Asset', url: string } | null }> }> };
 
 export type WorkspacesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8342,6 +8430,8 @@ export const PersonalProjectsDocument = gql`
     name
     description
     releaseDate
+    github
+    demoUrl
     features {
       name
       description

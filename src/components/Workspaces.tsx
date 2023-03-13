@@ -24,7 +24,7 @@ export default function Workspaces() {
 	const { data } = useWorkspacesQuery();
 
 	return (
-		<motion.div className="flex flex-col px-10 xl:px-0 md:flex-row w-full max-w-7xl items-start justify-center mt-5 text-white gap-32">
+		<motion.div className="flex flex-col px-4 xl:px-0 md:flex-row w-full max-w-7xl items-start justify-center mt-5 text-white gap-32">
 			<motion.div className="flex lg:sticky top-36 md:px-3 w-full lg:w-auto overflow-hidden">
 				<motion.div className="flex flex-col gap-3">
 					<span className="font-semibold text-lg font-epilogue max-w-[200px]">

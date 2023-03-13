@@ -7,6 +7,8 @@ module.exports = {
 				sans: 'Roboto',
 				poppins: 'Poppins',
 				epilogue: 'Epilogue',
+				urbanist: 'Urbanist',
+				nabla: 'Kelly Slab',
 			},
 		},
 	},
