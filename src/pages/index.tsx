@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { Widget } from '@typeform/embed-react';
 import Header from '@/components/Header';
-import SwiperCore from 'swiper';
 import Slider from 'react-slick';
 
 import {
@@ -15,22 +15,24 @@ import {
 	useInView,
 } from 'framer-motion';
 import { wrap } from '@motionone/utils';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SiTailwindcss, SiTypescript } from 'react-icons/si';
-import { FaReact } from 'react-icons/fa';
+import { FaGithub, FaPlayCircle, FaReact } from 'react-icons/fa';
 import { GrNode, GrMysql } from 'react-icons/gr';
 import { CgFramer } from 'react-icons/cg';
 import { TbBrandNextjs } from 'react-icons/tb';
-import { RxStitchesLogo } from 'react-icons/rx';
+import { AiOutlineLink } from 'react-icons/ai';
+
 import Me from '@/components/Me';
 import Workspaces from '@/components/Workspaces';
 
 import Courses from '@/components/Courses';
-import { ProjectModal } from '@/components/ProjectModal';
 
 import { useLocaleContext } from '@/Context/LocaleContext';
 import AnimatedTextCharacter from '@/components/AnimatedTextCharacter';
-import { IoLogoDocker } from 'react-icons/io5';
+import { IoCloseCircleOutline, IoLogoDocker } from 'react-icons/io5';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 interface ParallaxProps {
 	baseVelocity: number;
@@ -195,23 +197,43 @@ const sliderItems2 = [
 const headerItems = [
 	{
 		title: 'Apaixonado em programar sistemas',
-		img: 'https://images.unsplash.com/photo-1623479322729-28b25c16b011?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8',
+		img: 'slider_1.jpeg',
 	},
 	{
 		title: 'Amante de filmes de terror',
-		img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8',
+		img: 'slider_2.jpeg',
 	},
 	{
 		title: 'Viciado em criar interfaces interativas',
-		img: 'https://images.unsplash.com/photo-1602576666092-bf6447a729fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8',
+		img: 'slider_3.jpeg',
 	},
 ];
 
 export default function Home() {
-	const ref = useRef(null);
 	const { personal_Projects } = useLocaleContext();
-	const isInView = useInView(ref);
+	const [stepProgress, setStepProgress] = useState('first');
+	const cta = useRef(null);
+	const about_me = useRef(null);
+	const experience = useRef(null);
+	const projects = useRef(null);
+	const courses = useRef(null);
+	const contact = useRef(null);
+	const CtaisInView = useInView(cta);
+	const aboutMeisInView = useInView(about_me);
+	const ExperienceisInView = useInView(experience);
+	const ProjectsInView = useInView(projects);
+	const CoursesInView = useInView(courses);
+	const ContactInView = useInView(contact);
+	const [open, setOpen] = useState(false);
+	const [selectedProject, setSelectedProject] = useState(null);
 
+	const openModal = () => {
+		setOpen(true);
+	};
+	console.log(selectedProject);
+	const closeModal = () => {
+		setOpen(false);
+	};
 	const settings = {
 		dots: true,
 		fade: true,
@@ -280,7 +302,7 @@ export default function Home() {
 						return (
 							<div
 								key={index}
-								className="flex items-center w-[139px] h-[28px] justify-start gap-2 text-2xl font-poppins font-semibold normal-case text-white opacity-40 tracking-wide"
+								className="flex items-center w-[139px] h-[28px] justify-start gap-1 md:gap-2 text-xl md:text-2xl font-poppins font-semibold normal-case text-white opacity-50 tracking-wide"
 							>
 								{item.icon} {item.title}
 							</div>
@@ -291,16 +313,68 @@ export default function Home() {
 		);
 	}
 	useEffect(() => {
-		if (personal_Projects) {
-			console.log(personal_Projects[0]);
+		if (CtaisInView) {
+			setStepProgress('first');
 		}
-	}, [personal_Projects]);
+		if (aboutMeisInView) {
+			setStepProgress('first');
+		}
+		if (ExperienceisInView) {
+			setStepProgress('second');
+		}
+		if (ProjectsInView) {
+			setStepProgress('third');
+		}
+		if (CoursesInView) {
+			setStepProgress('fourth');
+		}
+		if (ContactInView) {
+			setStepProgress('fifth');
+		}
+
+		console.log(stepProgress);
+	}, [
+		ExperienceisInView,
+		CtaisInView,
+		aboutMeisInView,
+		ProjectsInView,
+		CoursesInView,
+		ContactInView,
+	]);
+
+	// useLaoutEffect callback return type is "() => void" type
+	useLayoutEffect((): (() => void) => {
+		if (open) {
+			// Get original body overflow
+			const originalStyle: string = window.getComputedStyle(
+				document.body
+			).overflow;
+			// Prevent scrolling on mount
+			document.body.style.overflow = 'hidden';
+			// Re-enable scrolling when component unmounts
+			return () => (document.body.style.overflow = originalStyle);
+		} else {
+			return () => {};
+		}
+	}, [open]); // Empty array ensures effect is only run on mount and unmount
+
+	function showModal(project: any) {
+		setSelectedProject(project);
+		openModal();
+	}
+
 	return (
 		<div className="w-full flex flex-col items-center">
-			<div className="w-full h-screen flex flex-col items-center bg-[url('/grid.svg')] bg-cover bg-no-repeat bg-center text-white px-5 md:px-0 relative">
-				<Header teste={isInView} />
+			<div
+				className="w-full h-screen flex flex-col items-center bg-[url('/grid.svg')] bg-cover bg-no-repeat bg-center text-white px-5 md:px-0 relative"
+				id="about"
+			>
+				<Header active_tab={stepProgress} />
 
-				<div className="w-full  bg-gradient-to-b from-black/40 via-black/90 to-black h-60 absolute bottom-0" />
+				<div
+					ref={cta}
+					className="w-full  bg-gradient-to-b from-black/40 via-black/90 to-black h-60 absolute bottom-0"
+				/>
 				<div className="w-full px-2 md:px-5 xl:px-0 max-w-7xl mt-3 xl:mt-32">
 					<Slider {...settings} className="w-full">
 						{headerItems.map((item) => {
@@ -337,15 +411,19 @@ export default function Home() {
 					</Slider>
 				</div>
 				<div className="w-full md:max-w-[950px] mt-20 lg:mt-52 relative">
-					<div className="absolute bg-gradient-to-r from-black to-transparent via-black/40 z-10 h-full w-32 left-0 top-0" />
+					<div className="absolute bg-gradient-to-r from-black to-transparent via-black/40 z-10 h-full w-20 md:w-32 left-0 top-0" />
 					<ParallaxText baseVelocity={-3} />
-					<div className="absolute bg-gradient-to-l from-black to-transparent via-black/40 z-10 h-full w-32 right-0 top-0" />
+					<div className="absolute bg-gradient-to-l from-black to-transparent via-black/40 z-10 h-full w-20 md:w-32 right-0 top-0" />
 				</div>
 			</div>
-			<div className="w-full bg-white flex justify-center" id="me">
+			<div className="w-full bg-white flex justify-center" id="me" ref={about_me}>
 				<Me />
 			</div>
-			<div className="w-full flex  flex-col items-center justify-center bg-black py-20 md:py-40">
+			<div
+				className="w-full flex  flex-col items-center justify-center bg-black py-20 md:py-40"
+				id="experience"
+				ref={experience}
+			>
 				<Workspaces />
 			</div>
 			<div
@@ -357,74 +435,199 @@ export default function Home() {
 					<SiTypescript size={24} color="#000" />
 				</motion.span>
 
-				<div className="w-full flex flex-col md:grid md:grid-cols-3 gap-24 max-w-7xl px-5">
+				<div
+					className="w-full flex flex-col md:grid md:grid-cols-3 gap-24 max-w-7xl px-5"
+					ref={projects}
+					id="projects"
+				>
 					{personal_Projects?.map((item: any, index: number) => {
 						return (
-							<ProjectModal key={index} project={personal_Projects[index]}>
-								<motion.div className="w-full  md:max-w-[370px] cursor-pointer">
-									<div className="flex flex-col ">
-										<div className="">
-											<div className="relative h-62 w-full mb-3">
-												<div className="absolute flex flex-col top-0 right-0 p-3">
-													<button className="transition ease-in duration-300 bg-gray-800  hover:text-purple-500 shadow hover:shadow-md text-gray-500 rounded-full w-8 h-8 text-center p-1">
-														<svg
-															xmlns="http://www.w3.org/2000/svg"
-															className="h-6 w-6"
-															fill="none"
-															viewBox="0 0 24 24"
-															stroke="currentColor"
-														>
-															<path
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																stroke-width="2"
-																d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-															/>
-														</svg>
-													</button>
+							<motion.div
+								className="w-full  md:max-w-[370px] cursor-pointer"
+								key={index}
+								onClick={() => showModal(personal_Projects[index])}
+							>
+								<div className="flex flex-col ">
+									<div className="">
+										<div className="relative h-62 w-full mb-3">
+											<img
+												src={item.thumbnail?.url}
+												alt="Just a flower"
+												className=" w-full object-fill rounded-2xl"
+											/>
+										</div>
+										<div className="flex-auto justify-evenly">
+											<div className="flex flex-wrap ">
+												<div className="w-full flex-none text-sm flex items-center text-gray-600">
+													<span className="mr-2 text-gray-400">React</span>
 												</div>
-												<img
-													src={item.thumbnail?.url}
-													alt="Just a flower"
-													className=" w-full   object-fill  rounded-2xl"
-												/>
-											</div>
-											<div className="flex-auto justify-evenly">
-												<div className="flex flex-wrap ">
-													<div className="w-full flex-none text-sm flex items-center text-gray-600">
-														{/* <svg
-															xmlns="http://www.w3.org/2000/svg"
-															className="h-4 w-4 text-red-500 mr-1"
-															viewBox="0 0 20 20"
-															fill="currentColor"
-														>
-															<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-														</svg> */}
-
-														<span className="mr-2 text-gray-400">React</span>
-													</div>
-													<div className="flex items-center w-full justify-between min-w-0 ">
-														<h2 className="text-lg mr-auto cursor-pointer text-gray-200 hover:text-purple-500 truncate ">
-															{item.name}
-														</h2>
-													</div>
-												</div>
-												<div className="text-lg text-white font-semibold mt-1 mb-3">
-													2 meses
+												<div className="flex items-center w-full justify-between min-w-0 ">
+													<h2 className="text-lg mr-auto cursor-pointer text-gray-200 truncate ">
+														{item.name}
+													</h2>
 												</div>
 											</div>
 										</div>
 									</div>
-								</motion.div>
-							</ProjectModal>
+								</div>
+							</motion.div>
 						);
 					})}
 				</div>
+				<AnimatePresence>
+					{open && (
+						<Overlay close={closeModal}>
+							<Modal data={selectedProject} close={closeModal} />
+						</Overlay>
+					)}
+				</AnimatePresence>
 			</div>
 
-			<div className="w-full flex flex-col  items-center justify-center bg-white py-20 md:py-40">
+			<div
+				className="w-full flex flex-col  items-center justify-center bg-white py-20 md:py-40"
+				ref={courses}
+				id="courses"
+			>
 				<Courses />
+			</div>
+			<div
+				className="w-full md:pb-5  flex flex-col  items-center justify-center bg-white pb-32"
+				ref={contact}
+				id="contact"
+			>
+				<Widget id="v7a3IcmF" className="w-full max-w-7xl h-[500px]" />
 			</div>
 		</div>
 	);
 }
+
+interface OvelayProps {
+	close: () => void;
+	children: ReactNode;
+}
+
+const Overlay = ({ children, close }: OvelayProps) => {
+	const variants = {
+		open: { backgroundColor: 'rgba(0,0,0,0.6)' },
+		closed: { backgroundColor: 'rgba(0,0,0,0)' },
+	};
+
+	return (
+		<motion.div
+			className="fixed top-0 left-0 w-full h-full flex z-50 items-center justify-center"
+			onClick={close}
+			variants={variants}
+			initial={'closed'}
+			animate={'open'}
+			exit={'closed'}
+			key="overlay"
+		>
+			{children}
+		</motion.div>
+	);
+};
+
+const Modal = ({ data, close }: any) => {
+	const modalVariants = {
+		open: {
+			opacity: 1,
+			transition: { staggerChildren: 0.5, delayChildren: 0.2 },
+		},
+		closed: { opacity: 0 },
+	};
+
+	const imageVariants = {
+		open: { opacity: 1, y: '0vh' },
+		closed: { opacity: 0, y: '-10vh' },
+	};
+
+	const modalInfoVariants = {
+		open: { opacity: 1, transition: { staggerChildren: 0.2 } },
+		closed: { opacity: 0 },
+	};
+
+	const modalRowVariants = {
+		open: { opacity: 1, x: 0 },
+		closed: { opacity: 0, x: '10%' },
+	};
+
+	return (
+		<motion.div
+			className="modal flex relative bg-white dark:bg-[#111010]"
+			variants={modalVariants}
+			onClick={(e) => e.stopPropagation()}
+		>
+			{data.videoDemo ? (
+				<motion.video
+					className="modal__image"
+					autoPlay
+					controls={false}
+					preload="metadata"
+					poster={data.thumbnail?.url}
+					src={data.videoDemo.url}
+					variants={imageVariants}
+				/>
+			) : (
+				<motion.img
+					className="modal__image"
+					src={data.thumbnail?.url}
+					variants={imageVariants}
+				/>
+			)}
+
+			<motion.div
+				className="bg-white dark:bg-[#111010] text-black dark:text-white flex w-full h-full p-5 flex-col items-start"
+				variants={modalInfoVariants}
+			>
+				<motion.div
+					className="flex items-center text-left my-5"
+					variants={modalRowVariants}
+				>
+					<span className="text-4xl font-semibold font-epilogue">{data.name}</span>
+				</motion.div>
+
+				<motion.div
+					className="flex items-center text-left my-5 gap-2"
+					variants={modalRowVariants}
+				>
+					<a
+						target={data.github ? '_blank' : ''}
+						href={data.github ? data.github : ''}
+						className="flex items-center mr-3 group cursor-pointer "
+					>
+						<span className="w-8 h-8 bg-black/5 dark:bg-white/10 group-hover:bg-black/10 dark:group-hover:bg-white/20 flex justify-center items-center mr-1 rounded-full transition-all duration-200">
+							<FaGithub size={22} />
+						</span>
+						<span className="whitespace-nowrap font-semibold font-epilogue mt-1 border-b-2 border-b-transparent group-hover:border-b-black/20 dark:group-hover:border-b-white/20 transition-all duration-200">
+							Github
+						</span>
+					</a>
+					<a
+						target={data.demoUrl ? '_blank' : '_self'}
+						href={data.demoUrl ? data.demoUrl : '#'}
+						className="flex items-center mr-3 group cursor-pointer"
+					>
+						<span className="w-8 h-8 bg-black/5 dark:bg-white/10 group-hover:text-blue-500 group-hover:bg-black/10 dark:group-hover:bg-white/20 flex justify-center items-center mr-1 rounded-full transition-all duration-200">
+							<AiOutlineLink size={22} />
+						</span>
+						<span className="whitespace-nowrap text-black dark:text-white group-hover:text-blue-500 font-semibold mt-1 font-epilogue border-b-2 border-b-transparent group-hover:border-b-black/20 dark:group-hover:border-b-white/20 transition-all duration-200">
+							Demo
+						</span>
+					</a>
+				</motion.div>
+				<motion.div className="" variants={modalRowVariants}>
+					<p className="overflow-y-scroll scrollbar-hide flex items-start justify-start text-lg  text-black/70 dark:text-white/80 font-poppins leading-8">
+						{data.description}
+					</p>
+				</motion.div>
+				<motion.button
+					className="modal__close-wrapper"
+					whileHover={{ scale: 1.2 }}
+					onClick={close}
+				>
+					<IoCloseCircleOutline className="modal__close-icon" />
+				</motion.button>
+			</motion.div>
+		</motion.div>
+	);
+};

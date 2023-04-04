@@ -2,6 +2,8 @@ query workspaces {
 	workspaces(locales: pt_BR) {
 		company
 		role
+		startedIn
+		endIn
 		description {
 			html
 		}
@@ -9,6 +11,7 @@ query workspaces {
 		companyProjects(locales: pt_BR) {
 			name
 			url
+
 			description
 			techs
 		}

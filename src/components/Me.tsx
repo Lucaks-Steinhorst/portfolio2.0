@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useLocaleContext } from '@/Context/LocaleContext';
-import { useMeQuery } from '@/graphql/generated';
+
 import React from 'react';
 
 export default function Me() {
-	// const { data: en_data } = useMeQuery();
 	const { me } = useLocaleContext();
 
 	return (

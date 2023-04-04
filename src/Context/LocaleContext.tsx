@@ -22,37 +22,14 @@ export const LocaleProvider = (props: any) => {
 		personalProjects
 	);
 	const [locale, setLocale] = useState('pt_BR');
-	const cookies = parseCookies();
-	useEffect(() => {
-		setCookie(null, 'locale', locale, {
-			maxAge: 30 * 24 * 60 * 60,
-			path: '/',
-		});
-	}, [locale]);
-
-	async function changeLocale() {
-		if (cookies.locale === 'pt_BR') {
-			setLocale('en');
-		} else {
-			setLocale('pt_BR');
-		}
-	}
 
 	useEffect(() => {
-		if (locale === 'pt_BR') {
-			setMe(me_data?.me?.localizations[0]);
-			setPersonalProjects(personalProjects?.personalProjects);
-		} else {
-			setMe(me_data?.me);
-			setPersonalProjects(personalProjects?.personalProjects);
-		}
-	}, [locale, me_data?.me, personalProjects]);
+		setMe(me_data?.me?.localizations[0]);
+		setPersonalProjects(personalProjects?.personalProjects);
+	}, [me_data?.me, personalProjects]);
 
 	return (
-		<LocaleContext.Provider
-			value={{ locale, changeLocale, me, personal_Projects }}
-			{...props}
-		>
+		<LocaleContext.Provider value={{ locale, me, personal_Projects }} {...props}>
 			{props.children}
 		</LocaleContext.Provider>
 	);

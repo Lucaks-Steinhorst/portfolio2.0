@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { styled, keyframes } from '@stitches/react';
-import { SiMaterialui, SiReact } from 'react-icons/si';
-import { IoLogoPwa, IoLogoNodejs } from 'react-icons/io5';
 
 interface ModalProps {
 	children: ReactNode;

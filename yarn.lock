@@ -1471,6 +1471,19 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
+"@typeform/embed-react@^2.19.0":
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/@typeform/embed-react/-/embed-react-2.19.0.tgz#10bd4d596a4b94ab0be893888b0ea3211524f400"
+  integrity sha512-0uA76vltS/Plg7cAuMORTkc6yyG0Q/ZbIh7byjPaxbnypw5u6+J1eGNCCyGcIpe+xR+u6EBb0VuhWdH9YhBYzg==
+  dependencies:
+    "@typeform/embed" "2.9.2"
+    fast-deep-equal "^3.1.3"
+
+"@typeform/embed@2.9.2":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@typeform/embed/-/embed-2.9.2.tgz#2f5a937bf736e4c66a77bb7fb9dd4bb102d47afa"
+  integrity sha512-aCOUXPAwHo6/3AJNl+6aXqkvB+E5V+DqWae4KUYXd27HrqMomUdsp7jK+yGF7RiFP+PfNmWpi9OiKQUC2SBa8g==
+
 "@types/js-yaml@^4.0.0":
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-4.0.5.tgz#738dd390a6ecc5442f35e7f03fa1431353f7e138"
@@ -4015,6 +4028,11 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
+next-seo@^5.15.0:
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.15.0.tgz#b1a90508599774982909ea44803323c6fb7b50f4"
+  integrity sha512-LGbcY91yDKGMb7YI+28n3g+RuChUkt6pXNpa8FkfKkEmNiJkeRDEXTnnjVtwT9FmMhG6NH8qwHTelGrlYm9rgg==
+
 next@13.2.0:
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/next/-/next-13.2.0.tgz#100b2d1dca120a3460c767ccdad80fc8e2463e31"
@@ -4736,10 +4754,10 @@ safe-regex-test@^1.0.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass@^1.58.3:
-  version "1.58.3"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.58.3.tgz#2348cc052061ba4f00243a208b09c40e031f270d"
-  integrity sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==
+sass@^1.59.3:
+  version "1.59.3"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.59.3.tgz#a1ddf855d75c70c26b4555df4403e1bbf8e4403f"
+  integrity sha512-QCq98N3hX1jfTCoUAsF3eyGuXLsY7BCnCEg9qAact94Yc21npG2/mVOqoDvE0fCbWDqiM4WlcJQla0gWG2YlxQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"

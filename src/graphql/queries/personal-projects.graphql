@@ -1,11 +1,14 @@
 query PersonalProjects {
-	personalProjects {
+	personalProjects(orderBy: releaseDate_DESC, locales: pt_BR) {
 		id
 		name
 		description
 		releaseDate
 		github
 		demoUrl
+		videoDemo {
+			url
+		}
 		features {
 			name
 			description
@@ -15,21 +18,6 @@ query PersonalProjects {
 		}
 		thumbnail {
 			url
-		}
-		localizations {
-			name
-			description
-			releaseDate
-			features {
-				name
-				description
-			}
-			images {
-				url
-			}
-			thumbnail {
-				url
-			}
 		}
 	}
 }

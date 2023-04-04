@@ -2,9 +2,8 @@
 import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { styled, keyframes } from '@stitches/react';
-import { CaretDownIcon } from '@radix-ui/react-icons';
 import { violet, mauve, blackA } from '@radix-ui/colors';
-import Br from './Flags/BR';
+
 import { GrGlobe } from 'react-icons/gr';
 
 const NavigationMenuDemo = () => {
@@ -17,7 +16,7 @@ const NavigationMenuDemo = () => {
 					</NavigationMenuTrigger>
 					<NavigationMenuContent>
 						<ListItem>
-							<Br /> <GrGlobe size={30} />
+							<GrGlobe size={30} />
 						</ListItem>
 					</NavigationMenuContent>
 				</NavigationMenu.Item>
