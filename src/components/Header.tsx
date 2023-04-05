@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { useDetectScroll } from '@smakss/react-scroll-direction';
-import {
-	HiMenuAlt1,
-	HiMenuAlt2,
-	HiMenuAlt3,
-	HiOutlineMenuAlt2,
-} from 'react-icons/hi';
+import { HiMenuAlt3 } from 'react-icons/hi';
 
 interface HeaderProps {
 	active_tab: string;

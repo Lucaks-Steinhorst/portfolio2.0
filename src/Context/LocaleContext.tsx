@@ -1,8 +1,6 @@
 'use client';
 
 import { useMeQuery, usePersonalProjectsQuery } from '@/graphql/generated';
-import { useRouter } from 'next/router';
-import { parseCookies, setCookie } from 'nookies';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 interface ContextProps {

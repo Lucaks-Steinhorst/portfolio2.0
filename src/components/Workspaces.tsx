@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
 import Modal from './Modal';
 
 import { useWorkspacesQuery } from '@/graphql/generated';

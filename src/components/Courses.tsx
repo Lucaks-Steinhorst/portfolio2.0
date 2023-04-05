@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 import { useCoursesBrQuery } from '@/graphql/generated';
@@ -6,8 +6,6 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 export default function Courses() {
-	const [hover, setHover] = useState(false);
-
 	const { data: pt_data } = useCoursesBrQuery();
 
 	const container = {
